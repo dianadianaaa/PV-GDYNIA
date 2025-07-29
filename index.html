@@ -407,8 +407,8 @@
         });
     }
 
-function generujPDF(typ) {
-    // Krok 1: Aktualizacja i zapis danych (ten fragment pozostaje bez zmian)
+function function generujPDF(typ) {
+    // Krok 1: Aktualizacja i zapis danych (bez zmian)
     aktualizujPodsumowanieWizualne(); 
     if (!daneOferty.klient.imie) {
         alert("Proszę wypełnić dane klienta przed wygenerowaniem oferty.");
@@ -424,97 +424,120 @@ function generujPDF(typ) {
     
     // Krok 2: Inicjalizacja dokumentu PDF
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({ unit: 'pt' }); // ZMIANA: Używamy punktów dla większej precyzji
     const dzisiaj = new Date();
 
-    // Ustawienie czcionki (musi być załadowana w HTML)
+    // ZMIANA: Prawidłowe ustawienie czcionki dla polskich znaków
     doc.setFont('Roboto-Regular', 'normal');
 
-    // Krok 3: Dodawanie treści do PDF
+    // Krok 3: Dodawanie treści do PDF z lepszym formatowaniem
     // --- Nagłówek ---
     doc.setFontSize(20);
-    doc.text("Oferta Handlowa", 105, 20, { align: 'center' });
+    doc.text("Oferta Handlowa", doc.internal.pageSize.getWidth() / 2, 30, { align: 'center' });
     doc.setFontSize(10);
-    doc.text(`Numer oferty: ${numerZapisanejOferty}`, 105, 28, { align: 'center' });
-    doc.text(`Data wystawienia: ${dzisiaj.toLocaleDateString('pl-PL')}`, 105, 34, { align: 'center' });
+    doc.text(`Numer oferty: ${numerZapisanejOferty}`, doc.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
+    doc.text(`Data wystawienia: ${dzisiaj.toLocaleDateString('pl-PL')}`, doc.internal.pageSize.getWidth() / 2, 60, { align: 'center' });
 
     // --- Dane Klienta i Handlowca ---
-    doc.setFontSize(12);
-    doc.text("Dane Nabywcy:", 20, 50);
-    doc.setFontSize(10);
-    doc.text(daneOferty.klient.imie, 20, 58);
-    doc.text(daneOferty.klient.adres, 20, 64);
-    doc.text(daneOferty.klient.kod, 20, 70);
-    doc.text(`E-mail: ${daneOferty.klient.email || 'brak'}`, 20, 76);
-    doc.text(`Tel: ${daneOferty.klient.telefon || 'brak'}`, 20, 82);
+    doc.setLineWidth(0.5);
+    doc.line(30, 75, doc.internal.pageSize.getWidth() - 30, 75); // linia oddzielająca
 
     doc.setFontSize(12);
-    doc.text("Przedstawiciel Handlowy:", 110, 50);
+    doc.text("Dane Nabywcy:", 40, 95);
     doc.setFontSize(10);
-    doc.text(daneOferty.handlowiec.imie, 110, 58);
-    doc.text(`Teren: ${daneOferty.handlowiec.teren || 'brak'}`, 110, 64);
-    doc.text(`E-mail: ${daneOferty.handlowiec.email || 'brak'}`, 110, 70);
-    doc.text(`Tel: ${daneOferty.handlowiec.telefon || 'brak'}`, 110, 76);
+    doc.text(daneOferty.klient.imie, 40, 110);
+    doc.text(daneOferty.klient.adres, 40, 125);
+    doc.text(daneOferty.klient.kod, 40, 140);
+    doc.text(`E-mail: ${daneOferty.klient.email || 'brak'}`, 40, 155);
+    doc.text(`Tel: ${daneOferty.klient.telefon || 'brak'}`, 40, 170);
+
+    doc.setFontSize(12);
+    doc.text("Przedstawiciel Handlowy:", 300, 95);
+    doc.setFontSize(10);
+    doc.text(daneOferty.handlowiec.imie, 300, 110);
+    doc.text(`Teren: ${daneOferty.handlowiec.teren || 'brak'}`, 300, 125);
+    doc.text(`E-mail: ${daneOferty.handlowiec.email || 'brak'}`, 300, 140);
+    doc.text(`Tel: ${daneOferty.handlowiec.telefon || 'brak'}`, 300, 155);
+
+    doc.line(30, 185, doc.internal.pageSize.getWidth() - 30, 185); // linia oddzielająca
 
     // --- Tabela z produktami ---
     const tabelaBody = [];
-    const dodajDoTabeli = (opis, cena) => {
+    
+    // ZMIANA: Użycie funkcji pomocniczej dla obu typów ofert
+    const przygotujDaneTabeli = (opis, cena) => {
         if (opis && cena > 0) {
             const cenaNetto = cena;
             const kwotaVat = cenaNetto * daneOferty.stawkaVat;
             const cenaBrutto = cenaNetto + kwotaVat;
-            tabelaBody.push([opis, cenaNetto.toFixed(2) + ' PLN', kwotaVat.toFixed(2) + ' PLN', cenaBrutto.toFixed(2) + ' PLN']);
+            return [opis, cenaNetto.toFixed(2) + ' zł', kwotaVat.toFixed(2) + ' zł', cenaBrutto.toFixed(2) + ' zł'];
         }
+        return null;
     };
-    
-    // Logika dla biura - pokazuje szczegóły, dla klienta - tylko pozycje zbiorcze
+
     if (typ === 'biuro') {
-         if (daneOferty.zestawPV.price > 0) tabelaBody.push([daneOferty.zestawPV.text, daneOferty.zestawPV.price.toFixed(2) + ' PLN', 'zawarty', 'zawarty']);
-         dodajDoTabeli(daneOferty.magazynNisko.text, daneOferty.magazynNisko.price);
-         dodajDoTabeli(daneOferty.magazynWysoko.text, daneOferty.magazynWysoko.price);
-         dodajDoTabeli(daneOferty.dodatkiMagazyn.text, daneOferty.dodatkiMagazyn.price);
-         dodajDoTabeli(daneOferty.dodatkiModuly.text, daneOferty.dodatkiModuly.price);
-         dodajDoTabeli(daneOferty.klimatyzacja.text, daneOferty.klimatyzacja.price);
-         dodajDoTabeli(daneOferty.wymianaFalownikMagazyn.text, daneOferty.wymianaFalownikMagazyn.price);
-         dodajDoTabeli(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena);
-    } else {
-         // Dla klienta jedna pozycja zbiorcza
-         tabelaBody.push(['Instalacja fotowoltaiczna z montażem', daneOferty.obliczenia.sumaNettoFinal.toFixed(2) + ' PLN', daneOferty.obliczenia.kwotaVat.toFixed(2) + ' PLN', daneOferty.obliczenia.cenaKoncowa.toFixed(2) + ' PLN']);
+        let wiersz = przygotujDaneTabeli(daneOferty.zestawPV.text, daneOferty.zestawPV.price);
+        if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.magazynNisko.text, daneOferty.magazynNisko.price);
+        if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.magazynWysoko.text, daneOferty.magazynWysoko.price);
+        if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.dodatkiMagazyn.text, daneOferty.dodatkiMagazyn.price);
+        if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.dodatkiModuly.text, daneOferty.dodatkiModuly.price);
+        if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.klimatyzacja.text, daneOferty.klimatyzacja.price);
+        if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.wymianaFalownikMagazyn.text, daneOferty.wymianaFalownikMagazyn.price);
+        if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena);
+        if(wiersz) tabelaBody.push(wiersz);
+    } else { // Dla klienta
+        tabelaBody.push(['Instalacja fotowoltaiczna z montażem', daneOferty.obliczenia.sumaNettoFinal.toFixed(2) + ' zł', daneOferty.obliczenia.kwotaVat.toFixed(2) + ' zł', daneOferty.obliczenia.cenaKoncowa.toFixed(2) + ' zł']);
     }
 
     doc.autoTable({
-        startY: 90,
-        head: [['Opis produktu/usługi', 'Wartość Netto', `VAT (${daneOferty.stawkaVat * 100}%)`, 'Wartość Brutto']],
+        startY: 200,
+        head: [['Opis produktu/usługi', 'Wartość Netto', `VAT (${(daneOferty.stawkaVat * 100).toFixed(0)}%)`, 'Wartość Brutto']],
         body: tabelaBody,
         theme: 'grid',
-        headStyles: { fillColor: [0, 91, 65] } // Kolor nagłówka (ciemnozielony)
+        headStyles: { fillColor: [0, 91, 65], textColor: 255 },
+        styles: { font: 'Roboto-Regular', cellPadding: 5 }, // ZMIANA: Lepsze odstępy w komórkach
+        columnStyles: { 0: { cellWidth: 250 } } // ZMIANA: Szersza kolumna opisu
     });
 
     // --- Podsumowanie ---
-    const finalY = doc.lastAutoTable.finalY + 10;
+    const finalY = doc.lastAutoTable.finalY + 15;
     doc.setFontSize(12);
-    doc.text("Podsumowanie:", 140, finalY);
+    doc.text("Podsumowanie:", 370, finalY);
+
+    // ZMIANA: Tabela podsumowania z poprawionym wyrównaniem
     doc.autoTable({
-        startY: finalY + 2,
+        startY: finalY + 10,
         body: [
-            ['Suma Netto:', `${daneOferty.obliczenia.sumaNettoFinal.toFixed(2)} PLN`],
-            ['Wartość VAT:', `${daneOferty.obliczenia.kwotaVat.toFixed(2)} PLN`],
-            ['Cena końcowa Brutto:', `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} PLN`],
+            ['Suma Netto:', `${daneOferty.obliczenia.sumaNettoFinal.toFixed(2)} zł`],
+            ['Wartość VAT:', `${daneOferty.obliczenia.kwotaVat.toFixed(2)} zł`],
+            ['Cena końcowa Brutto:', `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} zł`],
         ],
         theme: 'plain',
         tableWidth: 'wrap',
-        margin: { left: 140 },
-        styles: { fontStyle: 'bold' }
+        margin: { left: 370 },
+        columnStyles: {
+            0: { fontStyle: 'bold', halign: 'right' },
+            1: { halign: 'right' }
+        }
     });
 
     // --- Stopka ---
+    const pageHeight = doc.internal.pageSize.getHeight();
     doc.setFontSize(8);
-    doc.text("Dziękujemy za zainteresowanie ofertą Green Now.", 105, 280, { align: 'center' });
-    doc.text("Oferta ważna 14 dni. Podane ceny są kwotami brutto i zawierają podatek VAT.", 105, 285, { align: 'center' });
+    doc.text("Dziękujemy za zainteresowanie ofertą Green Now.", doc.internal.pageSize.getWidth() / 2, pageHeight - 30, { align: 'center' });
+    doc.text("Oferta ważna 14 dni. Podane ceny są kwotami brutto i zawierają podatek VAT.", doc.internal.pageSize.getWidth() / 2, pageHeight - 20, { align: 'center' });
 
     // Krok 4: Zapisanie pliku PDF
     const nazwaPliku = `Oferta_${numerZapisanejOferty.replace(/\//g, '-')}_${typ}.pdf`;
     doc.save(nazwaPliku);
+}
 }
 
     // --- LOGOWANIE I INICJALIZACJA ---
