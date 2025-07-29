@@ -7,7 +7,7 @@
     <title>Kalkulator Green Now</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/roboto-font@0.1.0/fonts/Roboto/roboto-regular-normal.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-customfonts/1.0.4/LiberationSans-Regular-normal.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
@@ -60,15 +60,18 @@
             <div id="etap3" class="etap ukryty"><h2>Krok 3: Prace ziemne i dodatkowe</h2><label for="przekop">Przekop z kablem:</label><select id="przekop"><option value="brak" data-price="0">-- Brak --</option><option value="do10" data-price-per-meter="0" data-price="0">Przekop z kablem do 10 m</option><option value="10-30" data-price-per-meter="30">Przekop 10–30 m (30 zł/m)</option><option value="30-60" data-price-per-meter="35">Przekop 30–60 m (35 zł/m)</option><option value="powyzej60" data-price-per-meter="0" data-price="0">Przekop powyżej 60 m (wycena indywidualna)</option></select><div id="dlugosc-przekopu-kontener" class="ukryty"><label for="dlugosc-przekopu">Długość przekopu (w metrach):</label><input type="number" id="dlugosc-przekopu" min="0" value="0"></div><label for="klimatyzacja">Klimatyzacja:</label><select id="klimatyzacja"><option value="0" data-price="0">-- Wybierz --</option><option value="klima_2_6" data-price="3330">Klimatyzacja TCL Ocarina 2,6kW</option><option value="klima_3_4" data-price="3420">Klimatyzacja TCL Ocarina 3,4kW</option><option value="klima_5_1" data-price="4120">Klimatyzacja TCL Ocarina 5,1kW</option><option value="klima_6_8" data-price="4500">Klimatyzacja TCL Ocarina 6,8kW</option></select><label for="wymiana-falownik-magazyn">Wymiana falownik + magazyn:</label><select id="wymiana-falownik-magazyn"><option value="0" data-price="0">-- Wybierz --</option><option value="wymiana_gw10" data-price="23900">Falownik LV (GoodWe 10) + magazyn 10kWh</option><option value="wymiana_deye5" data-price="21700">Falownik LV (Deye 5) + magazyn 5kWh</option><option value="wymiana_deye10" data-price="24200">Falownik LV (Deye 10) + magazyn 10kWh</option></select><label for="inne-dodatki-nazwa">Inne dodatki (nazwa):</label><input type="text" id="inne-dodatki-nazwa" placeholder="Np. Dodatkowe zabezpieczenia"><label for="inne-dodatki-cena">Inne dodatki (kwota w PLN):</label><input type="number" id="inne-dodatki-cena" min="0" value="0"><div class="form-buttons"><button onclick="przejdzDoEtapu(2)" class="wstecz">&larr; Wstecz</button><button onclick="przejdzDoEtapu(4)">Generuj ofertę &rarr;</button></div></div>
             <div id="etap4" class="etap ukryty"><h2>Krok 4: Dane do oferty</h2><div id="formularz-danych"><h3>Dane Klienta</h3><input type="text" id="klient-imie" placeholder="Imię i nazwisko" required><input type="text" id="klient-adres" placeholder="Adres montażu" required><input type="text" id="klient-kod" placeholder="Kod pocztowy i miejscowość" required><input type="tel" id="klient-telefon" placeholder="Telefon" required><input type="email" id="klient-email" placeholder="E-mail" required><h3>Dane Handlowca</h3><input type="text" id="ph-imie" placeholder="Imię i nazwisko handlowca" required><input type="tel" id="ph-telefon" placeholder="Telefon handlowca" required><input type="email" id="ph-email" placeholder="E-mail handlowca" required><input type="text" id="ph-teren" placeholder="Teren działania" required><div class="form-buttons"><button type="button" onclick="przejdzDoEtapu(3)" class="wstecz">&larr; Wstecz</button><button type="button" id="przycisk-pdf-klient">Generuj ofertę dla Klienta</button><button type="button" id="przycisk-pdf-biuro">Generuj podsumowanie dla Biura</button></div></div></div>
         </div>
-        <div id="stale-podsumowanie"><h3>Wybrane elementy:</h3><ul id="lista-wybranych-elementow"></ul><h3>Podsumowanie Ceny:</h3><div id="podsumowanie-tresc"><p>Koszt Bazowy (dla firmy): <span id="koszt-bazowy">0.00</span> PLN</p><p>Marża Handlowca: <span id="wartosc-marzy">0.00</span> PLN</p><p>Wartość Netto (z marżą): <span id="suma-netto-final">0.00</span> PLN</p><p>Podatek VAT: <span id="kwota-vat">0.00</span> PLN</p></div><label for="stawka-vat">Stawka VAT:</label><select id="stawka-vat"><option value="0.08">8%</option><option value="0.23">23%</option></select><label for="marza-procent">Marża (% od Kosztu Bazowego):</label><input type="number" id="marza-procent" min="0" value="0"><h3 id="cena-koncowa-naglowek">Cena końcowa dla klienta (Brutto): <span id="cena-koncowa">0.00 PLN</span></h3></div>
+        <div id="stale-podsumowanie"><h3>Wybrane elementy:</h3><ul id="lista-wybranych-elementow"></ul><h3>Podsumowanie Ceny:</h3><div id="podsumowanie-tresc"><p>Koszt Bazowy (dla firmy): <span id="koszt-bazowy">0.00</span> PLN</p><p>Marża Handlowca: <span id="wartosc-marzy">0.00</span> PLN</p><p>Wartość Netto (z marżą): <span id="suma-netto-final">0.00</span> PLN</p><p>Podatek VAT: <span id="kwota-vat">0.00</span> PLN</p></div><label for="stawka-vat">Stawka VAT:</label><select id="stawka-vat"><option value="0.08">8%</option><option value="0.23">23%</option></select><label for="marza-procent">Marża (% od Kosztu Bazowego):</label><input type="number" id="marza-procent" min="0" value="0">
+            <label for="globalny-rabat">Globalna korekta ceny zestawu (np. -500 lub 200):</label>
+<input type="number" id="globalny-rabat" value="0"><h3 id="cena-koncowa-naglowek">Cena końcowa dla klienta (Brutto): <span id="cena-koncowa">0.00 PLN</span></h3></div>
     </div>
 
 <script>
+    <script>
     const USTAWIENIA_GLOBALNE = {
         'nadprowizja-dyrektora': 0,
         'nadprowizja-kierownika': 0,
         'nadprowizja-firmy': 0,
-        'marza-widocznosc': 90
+        'marza-widocznosc': 98
     };
     const SCRIPT_URL_DO_DANYCH = "https://script.google.com/macros/s/AKfycbzmgBCoEwT8-hQsaXNMAkr6lD_uMLY7IESp-zJhyDrtRd1TkJeMfMW_B8T9EEPYCQM2tg/exec";
     const POPRAWNE_HASLO = "ZielonaEnergia2025";
@@ -82,27 +85,9 @@
     }
 
     const BAZA_PRODUKTOW_UI = {
-        "zestawy_sieciowe": {
-            "TRAPEZ": [{ "name": "TRAPEZ ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 17990.00 }, { "name": "TRAPEZ ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 19490.00 }, { "name": "TRAPEZ ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 20990.00 }, { "name": "TRAPEZ ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 22490.00 }, { "name": "TRAPEZ ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 23990.00 }, { "name": "TRAPEZ ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 24990.00 }, { "name": "TRAPEZ ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 25990.00 }, { "name": "TRAPEZ ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 27990.00 }, { "name": "TRAPEZ ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 29990.00 }, { "name": "TRAPEZ ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 31490.00 }, { "name": "TRAPEZ ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 32990.00 }, { "name": "TRAPEZ ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 34990.00 }],
-            "BLACHODACHÓWKA": [{ "name": "BLACHODACHÓWKA ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 18490.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 20090.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 21690.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 23290.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 24890.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 25990.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 27090.00 }, { "name": "BLACHODACHÓWKA ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 29190.00 }, { "name": "BLACHODACHÓWKA ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 31290.00 }, { "name": "BLACHODACHÓWKA ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 32890.00 }, { "name": "BLACHODACHÓWKA ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 34490.00 }, { "name": "BLACHODACHÓWKA ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 36590.00 }],
-            "DACHÓWKA": [{ "name": "DACHÓWKA ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 18690.00 }, { "name": "DACHÓWKA ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 20390.00 }, { "name": "DACHÓWKA ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 22090.00 }, { "name": "DACHÓWKA ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 23790.00 }, { "name": "DACHÓWKA ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 25490.00 }, { "name": "DACHÓWKA ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 26690.00 }, { "name": "DACHÓWKA ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 27890.00 }, { "name": "DACHÓWKA ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 30090.00 }, { "name": "DACHÓWKA ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 32290.00 }, { "name": "DACHÓWKA ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 33990.00 }, { "name": "DACHÓWKA ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 35690.00 }, { "name": "DACHÓWKA ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 37890.00 }],
-            "EKIERKI": [{ "name": "EKIERKI INWAZYJNE ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 18790.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 20590.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 22390.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 24190.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 25990.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 27290.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 28590.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 30890.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 33190.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 34990.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 36790.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 39090.00 }],
-            "GRUNT": [{ "name": "GRUNT ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 19990.00 }, { "name": "GRUNT ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 21990.00 }, { "name": "GRUNT ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 23990.00 }, { "name": "GRUNT ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 25990.00 }, { "name": "GRUNT ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 27990.00 }, { "name": "GRUNT ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 29490.00 }, { "name": "GRUNT ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 30990.00 }, { "name": "GRUNT ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 33490.00 }, { "name": "GRUNT ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 35990.00 }, { "name": "GRUNT ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 37990.00 }, { "name": "GRUNT ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 39990.00 }, { "name": "GRUNT ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 42490.00 }]
-        },
-        "zestawy_niskonapieciowe": {
-            "TRAPEZ": [{ "name": "TRAPEZ ZESTAW 4,4 KWP RISEN 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 31990.00 }, { "name": "TRAPEZ ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 33490.00 }, { "name": "TRAPEZ ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 34990.00 }, { "name": "TRAPEZ ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 35990.00 }, { "name": "TRAPEZ ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 36990.00 }, { "name": "TRAPEZ ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 38490.00 }, { "name": "TRAPEZ ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 39990.00 }, { "name": "TRAPEZ ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 41490.00 }],
-            "BLACHODACHÓWKA": [{ "name": "BLACHODACHÓWKA ZESTAW 4,4 KWP RISEN 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 32490.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 34090.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 35690.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 36790.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 37890.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 39490.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 41090.00 }, { "name": "BLACHODACHÓWKA ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 42690.00 }],
-            "DACHÓWKA": [{ "name": "DACHÓWKA ZESTAW 4,4 KWP RISen 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 32690.00 }, { "name": "DACHÓWKA ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 34390.00 }, { "name": "DACHÓWKA ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 36090.00 }, { "name": "DACHÓWKA ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 37290.00 }, { "name": "DACHÓWKA ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 38490.00 }, { "name": "DACHÓWKA ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 40190.00 }, { "name": "DACHÓWKA ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 41890.00 }, { "name": "DACHÓWKA ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 43590.00 }],
-            "EKIERKI": [{ "name": "EKIERKI ZESTAW 4,4 KWP RISEN 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 32790.00 }, { "name": "EKIERKI ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 34590.00 }, { "name": "EKIERKI ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 36390.00 }, { "name": "EKIERKI ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 37590.00 }, { "name": "EKIERKI ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 38890.00 }, { "name": "EKIERKI ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 40590.00 }, { "name": "EKIERKI ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 42390.00 }, { "name": "EKIERKI ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 44190.00 }],
-            "GRUNT": [{ "name": "GRUNT ZESTAW 4,4 KWP RISEN 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 33990.00 }, { "name": "GRUNT ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 35990.00 }, { "name": "GRUNT ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 37990.00 }, { "name": "GRUNT ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 39490.00 }, { "name": "GRUNT ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 40990.00 }, { "name": "GRUNT ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 42990.00 }, { "name": "GRUNT ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 44990.00 }, { "name": "GRUNT ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 46990.00 }]
-        },
-        "zestawy_wysokonapieciowe": {
-            "TRAPEZ": [{ "name": "TRAPEZ ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 35490.00 }, { "name": "TRAPEZ ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 36990.00 }, { "name": "TRAPEZ ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 38490.00 }, { "name": "TRAPEZ ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 39490.00 }, { "name": "TRAPEZ ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 40490.00 }, { "name": "TRAPEZ ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 41990.00 }, { "name": "TRAPEZ ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 42990.00 }],
-            "BLACHODACHÓWKA": [{ "name": "BLACHODACHÓWKA ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 35990.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 37590.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 39190.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 40290.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 41390.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 42990.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 44090.00 }],
-            "DACHÓWKA": [{ "name": "DACHÓWKA ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 36190.00 }, { "name": "DACHÓWKA ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 37890.00 }, { "name": "DACHÓWKA ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 39590.00 }, { "name": "DACHÓWKA ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 40790.00 }, { "name": "DACHÓWKA ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 41990.00 }, { "name": "DACHÓWKA ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 43690.00 }, { "name": "DACHÓWKA ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 44890.00 }],
-            "EKIERKI": [{ "name": "EKIERKI ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 36290.00 }, { "name": "EKIERKI ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 38090.00 }, { "name": "EKIERKI ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 39890.00 }, { "name": "EKIERKI ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 41090.00 }, { "name": "EKIERKI ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 42390.00 }, { "name": "EKIERKI ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 44090.00 }, { "name": "EKIERKI ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 45390.00 }],
-            "GRUNT": [{ "name": "GRUNT ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 37490.00 }, { "name": "GRUNT ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 39490.00 }, { "name": "GRUNT ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 41490.00 }, { "name": "GRUNT ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 42990.00 }, { "name": "GRUNT ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 44490.00 }, { "name": "GRUNT ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 46490.00 }, { "name": "GRUNT ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 47990.00 }]
-        }
+        "zestawy_sieciowe": { "TRAPEZ": [{ "name": "TRAPEZ ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 17990.00 }, { "name": "TRAPEZ ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 19490.00 }, { "name": "TRAPEZ ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 20990.00 }, { "name": "TRAPEZ ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 22490.00 }, { "name": "TRAPEZ ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 23990.00 }, { "name": "TRAPEZ ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 24990.00 }, { "name": "TRAPEZ ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 25990.00 }, { "name": "TRAPEZ ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 27990.00 }, { "name": "TRAPEZ ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 29990.00 }, { "name": "TRAPEZ ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 31490.00 }, { "name": "TRAPEZ ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 32990.00 }, { "name": "TRAPEZ ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 34990.00 }], "BLACHODACHÓWKA": [{ "name": "BLACHODACHÓWKA ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 18490.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 20090.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 21690.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 23290.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 24890.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 25990.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 27090.00 }, { "name": "BLACHODACHÓWKA ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 29190.00 }, { "name": "BLACHODACHÓWKA ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 31290.00 }, { "name": "BLACHODACHÓWKA ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 32890.00 }, { "name": "BLACHODACHÓWKA ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 34490.00 }, { "name": "BLACHODACHÓWKA ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 36590.00 }], "DACHÓWKA": [{ "name": "DACHÓWKA ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 18690.00 }, { "name": "DACHÓWKA ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 20390.00 }, { "name": "DACHÓWKA ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 22090.00 }, { "name": "DACHÓWKA ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 23790.00 }, { "name": "DACHÓWKA ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 25490.00 }, { "name": "DACHÓWKA ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 26690.00 }, { "name": "DACHÓWKA ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 27890.00 }, { "name": "DACHÓWKA ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 30090.00 }, { "name": "DACHÓWKA ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 32290.00 }, { "name": "DACHÓWKA ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 33990.00 }, { "name": "DACHÓWKA ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 35690.00 }, { "name": "DACHÓWKA ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 37890.00 }], "EKIERKI": [{ "name": "EKIERKI INWAZYJNE ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 18790.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 20590.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 22390.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 24190.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 25990.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 27290.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 28590.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 30890.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 33190.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 34990.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 36790.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 39090.00 }], "GRUNT": [{ "name": "GRUNT ZESTAW 4,4 KWP RISEN 440W + DEYE 3K", "price": 19990.00 }, { "name": "GRUNT ZESTAW 5,28 KWP RISEN 440W + DEYE 4K", "price": 21990.00 }, { "name": "GRUNT ZESTAW 6,16 KWP RISEN 440W + DEYE 5K", "price": 23990.00 }, { "name": "GRUNT ZESTAW 7,04 KWP RISEN 440W + DEYE 6K", "price": 25990.00 }, { "name": "GRUNT ZESTAW 7,92 KWP RISEN 440W + DEYE 8K", "price": 27990.00 }, { "name": "GRUNT ZESTAW 8,8 KWP RISEN 440W + DEYE 8K", "price": 29490.00 }, { "name": "GRUNT ZESTAW 9,68 KWP RISEN 440W + DEYE 10K", "price": 30990.00 }, { "name": "GRUNT ZESTAW 11 KWP RISEN 440W + DEYE 10K", "price": 33490.00 }, { "name": "GRUNT ZESTAW 12,32 KWP RISEN 440W + DEYE 12K", "price": 35990.00 }, { "name": "GRUNT ZESTAW 13,2 KWP RISEN 440W + DEYE 12K", "price": 37990.00 }, { "name": "GRUNT ZESTAW 14,08 KWP RISEN 440W + DEYE 15K", "price": 39990.00 }, { "name": "GRUNT ZESTAW 15,4 KWP RISEN 440W + DEYE 15K", "price": 42490.00 }] },
+        "zestawy_niskonapieciowe": { "TRAPEZ": [{ "name": "TRAPEZ ZESTAW 4,4 KWP RISEN 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 31990.00 }, { "name": "TRAPEZ ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 33490.00 }, { "name": "TRAPEZ ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 34990.00 }, { "name": "TRAPEZ ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 35990.00 }, { "name": "TRAPEZ ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 36990.00 }, { "name": "TRAPEZ ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 38490.00 }, { "name": "TRAPEZ ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 39990.00 }, { "name": "TRAPEZ ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 41490.00 }], "BLACHODACHÓWKA": [{ "name": "BLACHODACHÓWKA ZESTAW 4,4 KWP RISEN 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 32490.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 34090.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 35690.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 36790.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 37890.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 39490.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 41090.00 }, { "name": "BLACHODACHÓWKA ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 42690.00 }], "DACHÓWKA": [{ "name": "DACHÓWKA ZESTAW 4,4 KWP RISEN 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 32690.00 }, { "name": "DACHÓWKA ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 34390.00 }, { "name": "DACHÓWKA ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 36090.00 }, { "name": "DACHÓWKA ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 37290.00 }, { "name": "DACHÓWKA ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 38490.00 }, { "name": "DACHÓWKA ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 40190.00 }, { "name": "DACHÓWKA ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 41890.00 }, { "name": "DACHÓWKA ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 43590.00 }], "EKIERKI": [{ "name": "EKIERKI ZESTAW 4,4 KWP RISEN 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 32790.00 }, { "name": "EKIERKI ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 34590.00 }, { "name": "EKIERKI ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 36390.00 }, { "name": "EKIERKI ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 37590.00 }, { "name": "EKIERKI ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 38890.00 }, { "name": "EKIERKI ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 40590.00 }, { "name": "EKIERKI ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 42390.00 }, { "name": "EKIERKI ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 44190.00 }], "GRUNT": [{ "name": "GRUNT ZESTAW 4,4 KWP RISEN 440W + DEYE 5kW + MAGAZYN LV (5,12)", "price": 33990.00 }, { "name": "GRUNT ZESTAW 5,28 KWP RISEN 440W + DEYE 6kW + MAGAZYN LV (5,12)", "price": 35990.00 }, { "name": "GRUNT ZESTAW 6,16 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 37990.00 }, { "name": "GRUNT ZESTAW 7,04 KWP RISEN 440W + DEYE 8kW + MAGAZYN LV (5,12)", "price": 39490.00 }, { "name": "GRUNT ZESTAW 7,92 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 40990.00 }, { "name": "GRUNT ZESTAW 8,8 KWP RISEN 440W + DEYE 10kW + MAGAZYN LV (5,12)", "price": 42990.00 }, { "name": "GRUNT ZESTAW 9,68 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 44990.00 }, { "name": "GRUNT ZESTAW 11 KWP RISEN 440W + DEYE 12kW + MAGAZYN LV (5,12)", "price": 46990.00 }] },
+        "zestawy_wysokonapieciowe": { "TRAPEZ": [{ "name": "TRAPEZ ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 35490.00 }, { "name": "TRAPEZ ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 36990.00 }, { "name": "TRAPEZ ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 38490.00 }, { "name": "TRAPEZ ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 39490.00 }, { "name": "TRAPEZ ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 40490.00 }, { "name": "TRAPEZ ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 41990.00 }, { "name": "TRAPEZ ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 42990.00 }], "BLACHODACHÓWKA": [{ "name": "BLACHODACHÓWKA ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 35990.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 37590.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 39190.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 40290.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 41390.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 42990.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 44090.00 }], "DACHÓWKA": [{ "name": "DACHÓWKA ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 36190.00 }, { "name": "DACHÓWKA ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 37890.00 }, { "name": "DACHÓWKA ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 39590.00 }, { "name": "DACHÓWKA ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 40790.00 }, { "name": "DACHÓWKA ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 41990.00 }, { "name": "DACHÓWKA ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 43690.00 }, { "name": "DACHÓWKA ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 44890.00 }], "EKIERKI": [{ "name": "EKIERKI ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 36290.00 }, { "name": "EKIERKI ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 38090.00 }, { "name": "EKIERKI ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 39890.00 }, { "name": "EKIERKI ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 41090.00 }, { "name": "EKIERKI ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 42390.00 }, { "name": "EKIERKI ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 44090.00 }, { "name": "EKIERKI ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 45390.00 }], "GRUNT": [{ "name": "GRUNT ZESTAW 4,4 KWP RISEN 440W + GOODWE 5kW + DYNESS TOWER T10 (10,66)", "price": 37490.00 }, { "name": "GRUNT ZESTAW 5,28 KWP RISEN 440W + GOODWE 6kW + DYNESS TOWER T10 (10,66)", "price": 39490.00 }, { "name": "GRUNT ZESTAW 6,16 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 41490.00 }, { "name": "GRUNT ZESTAW 7,04 KWP RISEN 440W + GOODWE 8kW + DYNESS TOWER T10 (10,66)", "price": 42990.00 }, { "name": "GRUNT ZESTAW 7,92 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 44490.00 }, { "name": "GRUNT ZESTAW 8,8 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 46490.00 }, { "name": "GRUNT ZESTAW 9,68 KWP RISEN 440W + GOODWE 10kW + DYNESS TOWER T10 (10,66)", "price": 47990.00 }] }
     };
 
     function aktualizujPodsumowanieWizualne() {
@@ -114,6 +99,10 @@
             const aktywnaLista = document.getElementById(aktywnaListaId);
             wybranyZestaw = { text: getText(aktywnaLista), price: getPrice(aktywnaLista) };
         }
+        
+        // NOWA FUNKCJA: Pobieranie wartości globalnej korekty
+        const korektaGlobalna = parseFloat(document.getElementById('globalny-rabat').value) || 0;
+        const cenaZestawuPoKorekcie = wybranyZestaw.price > 0 ? wybranyZestaw.price + korektaGlobalna : 0;
         
         const nadprowizjaDyrektora = USTAWIENIA_GLOBALNE['nadprowizja-dyrektora'];
         const nadprowizjaKierownika = USTAWIENIA_GLOBALNE['nadprowizja-kierownika'];
@@ -132,12 +121,16 @@
             inneDodatki: { nazwa: document.getElementById('inne-dodatki-nazwa').value, cena: parseFloat(document.getElementById('inne-dodatki-cena').value) || 0 },
             stawkaVat: parseFloat(document.getElementById('stawka-vat').value),
             marzaProcent: parseFloat(document.getElementById('marza-procent').value) || 0,
+            korektaGlobalna: korektaGlobalna, // Zapisanie korekty do danych oferty
             klient: { imie: document.getElementById('klient-imie').value, adres: document.getElementById('klient-adres').value, kod: document.getElementById('klient-kod').value, telefon: document.getElementById('klient-telefon').value, email: document.getElementById('klient-email').value },
             handlowiec: { imie: document.getElementById('ph-imie').value, telefon: document.getElementById('ph-telefon').value, email: document.getElementById('ph-email').value, teren: document.getElementById('ph-teren').value },
             nadprowizje: { dyrektor: nadprowizjaDyrektora, kierownik: nadprowizjaKierownika, firma: nadprowizjaFirmy },
             ustawieniaMarzy: { widocznosc: marzaWidocznosc }
         };
-        const kosztPodstawowy = daneOferty.zestawPV.price + daneOferty.magazynNisko.price + daneOferty.magazynWysoko.price + daneOferty.dodatkiMagazyn.price + daneOferty.dodatkiModuly.price + (daneOferty.przekop.pricePerMeter * daneOferty.przekop.length) + daneOferty.klimatyzacja.price + daneOferty.wymianaFalownikMagazyn.price + daneOferty.inneDodatki.cena;
+
+        // NOWA FUNKCJA: Użycie ceny zestawu po korekcie w obliczeniach
+        const kosztPodstawowy = cenaZestawuPoKorekcie + daneOferty.magazynNisko.price + daneOferty.magazynWysoko.price + daneOferty.dodatkiMagazyn.price + daneOferty.dodatkiModuly.price + (daneOferty.przekop.pricePerMeter * daneOferty.przekop.length) + daneOferty.klimatyzacja.price + daneOferty.wymianaFalownikMagazyn.price + daneOferty.inneDodatki.cena;
+        
         const sumaNadprowizji = daneOferty.nadprowizje.dyrektor + daneOferty.nadprowizje.kierownik + daneOferty.nadprowizje.firma;
         const kosztBazowy = kosztPodstawowy + sumaNadprowizji;
         const wartoscMarzyCalkowita = kosztBazowy * (daneOferty.marzaProcent / 100);
@@ -146,6 +139,7 @@
         const sumaNettoFinal = kosztBazowy + wartoscMarzyCalkowita;
         const kwotaVat = sumaNettoFinal * daneOferty.stawkaVat;
         const cenaKoncowa = sumaNettoFinal + kwotaVat;
+        
         daneOferty.obliczenia = { kosztBazowy, sumaNettoFinal, kwotaVat, cenaKoncowa, marzaDlaPH, marzaDlaFirmy };
         document.getElementById('koszt-bazowy').textContent = kosztBazowy.toFixed(2);
         document.getElementById('wartosc-marzy').textContent = marzaDlaPH.toFixed(2);
@@ -153,17 +147,24 @@
         document.getElementById('kwota-vat').textContent = kwotaVat.toFixed(2);
         document.getElementById('cena-koncowa').textContent = `${cenaKoncowa.toFixed(2)}`;
         document.getElementById('dlugosc-przekopu-kontener').classList.toggle('ukryty', daneOferty.przekop.pricePerMeter <= 0);
+        
         const listaElementow = document.getElementById('lista-wybranych-elementow');
         listaElementow.innerHTML = '';
         const dodajDoListy = (etykieta, wartosc) => {
             if (wartosc && wartosc !== 'Brak' && wartosc !== '-- Wybierz --' && wartosc !== '--' && wartosc !== 0 && wartosc !== '-- Brak --') {
                 const li = document.createElement('li');
-                if (typeof wartosc === 'number') li.textContent = `${etykieta}: ${wartosc.toFixed(2)} PLN`;
+                if (typeof wartosc === 'number') li.textContent = `${etykieta}: ${wartosc.toFixed(2)} zł`;
                 else li.textContent = `${etykieta}: ${wartosc}`;
                 listaElementow.appendChild(li);
             }
         };
         dodajDoListy('Zestaw główny', daneOferty.zestawPV.text);
+        
+        // NOWA FUNKCJA: Wyświetlanie korekty na liście
+        if (daneOferty.korektaGlobalna !== 0) {
+            dodajDoListy('Korekta ceny zestawu', daneOferty.korektaGlobalna);
+        }
+
         dodajDoListy('Dod. magazyn NN', daneOferty.magazynNisko.text);
         dodajDoListy('Dod. magazyn WN', daneOferty.magazynWysoko.text);
         dodajDoListy('Bufor ciepła', daneOferty.dodatkiMagazyn.text);
@@ -209,6 +210,7 @@
     function zbierzOpisProduktow(dane) {
         const produkty = [];
         if (dane.zestawPV.text) produkty.push(dane.zestawPV.text);
+        if (dane.korektaGlobalna !== 0) produkty.push(`Korekta ceny zestawu: ${dane.korektaGlobalna.toFixed(2)} zł`);
         if (dane.magazynNisko.text) produkty.push(`Dod. magazyn NN: ${dane.magazynNisko.text}`);
         if (dane.magazynWysoko.text) produkty.push(`Dod. magazyn WN: ${dane.magazynWysoko.text}`);
         if (dane.dodatkiMagazyn.text) produkty.push(`Bufor: ${dane.dodatkiMagazyn.text}`);
@@ -222,26 +224,13 @@
 
     function zapiszOferteWArkuzu(dane) {
         const daneDoZapisu = {
-            action: 'saveOffer',
-            numerOferty: numerZapisanejOferty,
-            dataWygenerowania: new Date().toISOString(),
+            action: 'saveOffer', numerOferty: numerZapisanejOferty, dataWygenerowania: new Date().toISOString(),
             klient: `${dane.klient.imie}, ${dane.klient.adres}, ${dane.klient.kod}`,
-            handlowiec: dane.handlowiec.imie,
-            kwotaNetto: dane.obliczenia.sumaNettoFinal,
-            kwotaBrutto: dane.obliczenia.cenaKoncowa,
-            produkty: zbierzOpisProduktow(dane),
-            marzaHandlowca: dane.obliczenia.marzaDlaPH,
-            marzaDlaFirmy: dane.obliczenia.marzaDlaFirmy,
-            nadprowizjaDyrektora: dane.nadprowizje.dyrektor,
-            nadprowizjaKierownika: dane.nadprowizje.kierownik,
-            nadprowizjaFirmy: dane.nadprowizje.firma
+            handlowiec: dane.handlowiec.imie, kwotaNetto: dane.obliczenia.sumaNettoFinal, kwotaBrutto: dane.obliczenia.cenaKoncowa,
+            produkty: zbierzOpisProduktow(dane), marzaHandlowca: dane.obliczenia.marzaDlaPH, marzaDlaFirmy: dane.obliczenia.marzaDlaFirmy,
+            nadprowizjaDyrektora: dane.nadprowizje.dyrektor, nadprowizjaKierownika: dane.nadprowizje.kierownik, nadprowizjaFirmy: dane.nadprowizje.firma
         };
-
-        fetch(SCRIPT_URL_DO_DANYCH, {
-            method: 'POST',
-            mode: 'cors',
-            body: JSON.stringify(daneDoZapisu)
-        })
+        fetch(SCRIPT_URL_DO_DANYCH, { method: 'POST', mode: 'cors', body: JSON.stringify(daneDoZapisu) })
         .then(response => response.json())
         .then(data => {
             if (data.result !== "success") {
@@ -258,7 +247,6 @@
     }
 
 function generujPDF(typ) {
-    // Krok 1: Aktualizacja i zapis danych (bez zmian)
     aktualizujPodsumowanieWizualne(); 
     if (!daneOferty.klient.imie) {
         alert("Proszę wypełnić dane klienta przed wygenerowaniem oferty.");
@@ -272,22 +260,19 @@ function generujPDF(typ) {
         zapiszOferteWArkuzu(daneOferty);
     }
     
-    // Krok 2: Inicjalizacja dokumentu PDF
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: 'pt' });
     const dzisiaj = new Date();
 
-    doc.setFont('Roboto-Regular', 'normal');
+    // POPRAWKA: Użycie nowej, niezawodnej czcionki
+    doc.setFont('LiberationSans-Regular', 'normal');
 
-    // Krok 3: Dodawanie treści do PDF z lepszym formatowaniem
-    // --- Nagłówek ---
     doc.setFontSize(20);
     doc.text("Oferta Handlowa", doc.internal.pageSize.getWidth() / 2, 30, { align: 'center' });
     doc.setFontSize(10);
     doc.text(`Numer oferty: ${numerZapisanejOferty}`, doc.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
     doc.text(`Data wystawienia: ${dzisiaj.toLocaleDateString('pl-PL')}`, doc.internal.pageSize.getWidth() / 2, 60, { align: 'center' });
 
-    // --- Dane Klienta i Handlowca ---
     doc.setLineWidth(0.5);
     doc.line(30, 75, doc.internal.pageSize.getWidth() - 30, 75);
 
@@ -310,10 +295,9 @@ function generujPDF(typ) {
 
     doc.line(30, 185, doc.internal.pageSize.getWidth() - 30, 185);
 
-    // --- Tabela z produktami ---
     const tabelaBody = [];
     const przygotujDaneTabeli = (opis, cena) => {
-        if (opis && cena > 0) {
+        if (opis && cena !== 0) { // Zmieniono warunek, aby uwzględniać ujemne korekty
             const cenaNetto = cena;
             const kwotaVat = cenaNetto * daneOferty.stawkaVat;
             const cenaBrutto = cenaNetto + kwotaVat;
@@ -323,22 +307,18 @@ function generujPDF(typ) {
     };
 
     if (typ === 'biuro') {
-        let wiersz = przygotujDaneTabeli(daneOferty.zestawPV.text, daneOferty.zestawPV.price);
+        const cenaZestawuPoKorekcie = daneOferty.zestawPV.price > 0 ? daneOferty.zestawPV.price + daneOferty.korektaGlobalna : 0;
+        let wiersz = przygotujDaneTabeli(daneOferty.zestawPV.text, cenaZestawuPoKorekcie);
         if(wiersz) tabelaBody.push(wiersz);
         wiersz = przygotujDaneTabeli(daneOferty.magazynNisko.text, daneOferty.magazynNisko.price);
         if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.magazynWysoko.text, daneOferty.magazynWysoko.price);
-        if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.dodatkiMagazyn.text, daneOferty.dodatkiMagazyn.price);
-        if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.dodatkiModuly.text, daneOferty.dodatkiModuly.price);
-        if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.klimatyzacja.text, daneOferty.klimatyzacja.price);
-        if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.wymianaFalownikMagazyn.text, daneOferty.wymianaFalownikMagazyn.price);
-        if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena);
-        if(wiersz) tabelaBody.push(wiersz);
+        // ... reszta pozycji dla 'biuro'
+        wiersz = przygotujDaneTabeli(daneOferty.magazynWysoko.text, daneOferty.magazynWysoko.price); if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.dodatkiMagazyn.text, daneOferty.dodatkiMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.dodatkiModuly.text, daneOferty.dodatkiModuly.price); if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.klimatyzacja.text, daneOferty.klimatyzacja.price); if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.wymianaFalownikMagazyn.text, daneOferty.wymianaFalownikMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
+        wiersz = przygotujDaneTabeli(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena); if(wiersz) tabelaBody.push(wiersz);
     } else {
         tabelaBody.push(['Instalacja fotowoltaiczna z montażem', daneOferty.obliczenia.sumaNettoFinal.toFixed(2) + ' zł', daneOferty.obliczenia.kwotaVat.toFixed(2) + ' zł', daneOferty.obliczenia.cenaKoncowa.toFixed(2) + ' zł']);
     }
@@ -348,19 +328,15 @@ function generujPDF(typ) {
         head: [['Opis produktu/usługi', 'Wartość Netto', `VAT (${(daneOferty.stawkaVat * 100).toFixed(0)}%)`, 'Wartość Brutto']],
         body: tabelaBody,
         theme: 'grid',
-        headStyles: { fillColor: [0, 91, 65], textColor: 255 },
-        styles: { font: 'Roboto-Regular', cellPadding: 5 },
+        headStyles: { fillColor: [0, 91, 65], textColor: 255, font: 'LiberationSans-Regular' },
+        styles: { font: 'LiberationSans-Regular', cellPadding: 5 },
         columnStyles: { 0: { cellWidth: 250 } }
     });
 
-    // --- Podsumowanie ---
     const finalY = doc.lastAutoTable.finalY + 15;
-    
-    // ZMIANA: Przeniesienie nagłówka na lewą stronę
     doc.setFontSize(12);
     doc.text("Podsumowanie:", 40, finalY);
 
-    // ZMIANA: Tabela podsumowania na lewej stronie z nowym formatowaniem
     doc.autoTable({
         startY: finalY + 10,
         body: [
@@ -369,26 +345,23 @@ function generujPDF(typ) {
             ['Cena końcowa Brutto:', `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} zł`],
         ],
         theme: 'plain',
-        margin: { left: 40 }, // wyrównanie do lewego marginesu
+        margin: { left: 40 },
         columnStyles: {
-            0: { fontStyle: 'bold', halign: 'left', cellWidth: 150 }, // etykiety wyrównane do lewej
-            1: { halign: 'right', cellWidth: 100 } // wartości wyrównane do prawej
+            0: { fontStyle: 'bold', halign: 'left', cellWidth: 150 },
+            1: { halign: 'right', cellWidth: 100 }
         },
-        styles: { font: 'Roboto-Regular' } // wymuszenie poprawnej czcionki
+        styles: { font: 'LiberationSans-Regular' }
     });
 
-    // --- Stopka ---
     const pageHeight = doc.internal.pageSize.getHeight();
     doc.setFontSize(8);
     doc.text("Dziękujemy za zainteresowanie ofertą Green Now.", doc.internal.pageSize.getWidth() / 2, pageHeight - 30, { align: 'center' });
     doc.text("Oferta ważna 14 dni. Podane ceny są kwotami brutto i zawierają podatek VAT.", doc.internal.pageSize.getWidth() / 2, pageHeight - 20, { align: 'center' });
 
-    // Krok 4: Zapisanie pliku PDF
     const nazwaPliku = `Oferta_${numerZapisanejOferty.replace(/\//g, '-')}_${typ}.pdf`;
     doc.save(nazwaPliku);
 }
 
-    // --- LOGOWANIE I INICJALIZACJA ---
     document.getElementById('przycisk-zaloguj').addEventListener('click', () => {
         const haslo = document.getElementById('haslo-dostepu').value.trim();
         if (haslo === POPRAWNE_HASLO) {
@@ -401,11 +374,10 @@ function generujPDF(typ) {
         }
     });
     
+    // ZMIANA: Podpięcie nowego pola do aktualizacji
     document.querySelectorAll('input, select').forEach(el => {
-        el.addEventListener('change', aktualizujPodsumowanieWizualne);
-        if (el.type === 'number' || el.type === 'text') {
-             el.addEventListener('keyup', aktualizujPodsumowanieWizualne);
-        }
+        const eventType = el.tagName.toLowerCase() === 'select' ? 'change' : 'input';
+        el.addEventListener(eventType, aktualizujPodsumowanieWizualne);
     });
 
     document.getElementById('typ-pokrycia').addEventListener('change', () => {
@@ -434,13 +406,6 @@ function generujPDF(typ) {
     document.getElementById('przycisk-pdf-klient').addEventListener('click', () => generujPDF('klient'));
     document.getElementById('przycisk-pdf-biuro').addEventListener('click', () => generujPDF('biuro'));
     
-    // Inicjalizacja stanu początkowego
     odswiezWszystkieListy();
     aktualizujPodsumowanieWizualne();
 </script>
-</body>
-</html>
-</script>
-
-</body>
-</html>
