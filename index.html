@@ -113,413 +113,392 @@
         if (el) el.classList.remove('ukryty');
     }
 
-    // NOWA BAZA PRODUKTÓW Z PLIKU EXCEL
+    // NOWA BAZA PRODUKTÓW Z PLIKU
     const BAZA_PRODUKTOW_UI = {
         "zestawy_sieciowe": {
             "TRAPEZ": [
-                { "name": "TRAPEZ ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 15900.00 },
-                { "name": "TRAPEZ ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 16560.00 },
-                { "name": "TRAPEZ ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 17040.00 },
-                { "name": "TRAPEZ ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 18100.00 },
-                { "name": "TRAPEZ ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 18850.00 },
-                { "name": "TRAPEZ ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 19590.00 },
-                { "name": "TRAPEZ ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 20320.00 },
-                { "name": "TRAPEZ ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 21040.00 },
-                { "name": "TRAPEZ ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 21750.00 },
-                { "name": "TRAPEZ ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 22450.00 },
-                { "name": "TRAPEZ ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 23140.00 },
-                { "name": "TRAPEZ ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 23720.00 },
-                { "name": "TRAPEZ ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 24250.00 },
-                { "name": "TRAPEZ ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 24740.00 },
-                { "name": "TRAPEZ ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 25300.00 },
-                { "name": "TRAPEZ ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 25920.00 },
-                { "name": "TRAPEZ ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 26570.00 },
-                { "name": "TRAPEZ ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 27160.00 },
-                { "name": "TRAPEZ ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 27640.00 },
-                { "name": "TRAPEZ ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 28170.00 },
-                { "name": "TRAPEZ ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 28790.00 },
-                { "name": "TRAPEZ ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 29450.00 },
-                { "name": "TRAPEZ ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 30000.00 },
-                { "name": "TRAPEZ ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 30600.00 },
-                { "name": "TRAPEZ ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 31150.00 }
+                { "name": "TRAPEZ ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 15900.00 }, { "name": "TRAPEZ ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 16560.00 }, { "name": "TRAPEZ ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 17040.00 }, { "name": "TRAPEZ ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 18100.00 }, { "name": "TRAPEZ ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 18850.00 }, { "name": "TRAPEZ ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 19590.00 }, { "name": "TRAPEZ ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 20320.00 }, { "name": "TRAPEZ ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 21040.00 }, { "name": "TRAPEZ ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 21750.00 }, { "name": "TRAPEZ ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 22450.00 }, { "name": "TRAPEZ ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 23140.00 }, { "name": "TRAPEZ ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 23720.00 }, { "name": "TRAPEZ ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 24250.00 }, { "name": "TRAPEZ ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 24740.00 }, { "name": "TRAPEZ ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 25300.00 }, { "name": "TRAPEZ ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 25920.00 }, { "name": "TRAPEZ ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 26570.00 }, { "name": "TRAPEZ ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 27160.00 }, { "name": "TRAPEZ ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 27640.00 }, { "name": "TRAPEZ ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 28170.00 }, { "name": "TRAPEZ ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 28790.00 }, { "name": "TRAPEZ ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 29450.00 }, { "name": "TRAPEZ ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 30000.00 }, { "name": "TRAPEZ ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 30600.00 }, { "name": "TRAPEZ ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 31150.00 }
             ],
             "BLACHODACHÓWKA": [
-                { "name": "BLACHODACHÓWKA ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 16278.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 17001.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 17544.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 18667.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 19480.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 20283.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 21076.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 21859.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 22632.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 23395.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 24148.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 24791.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 25384.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 25937.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 26560.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 27243.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 27956.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 28609.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 29152.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 29745.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 30428.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 31151.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 31764.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 32427.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 33040.00 }
+                { "name": "BLACHODACHÓWKA ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 16278.00 }, { "name": "BLACHODACHÓWKA ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 17001.00 }, { "name": "BLACHODACHÓWKA ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 17544.00 }, { "name": "BLACHODACHÓWKA ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 18667.00 }, { "name": "BLACHODACHÓWKA ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 19480.00 }, { "name": "BLACHODACHÓWKA ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 20283.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 21076.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 21859.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 22632.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 23395.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 24148.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 24791.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 25384.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 25937.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 26560.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 27243.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 27956.00 }, { "name": "BLACHODACHÓWKA ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 28609.00 }, { "name": "BLACHODACHÓWKA ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 29152.00 }, { "name": "BLACHODACHÓWKA ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 29745.00 }, { "name": "BLACHODACHÓWKA ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 30428.00 }, { "name": "BLACHODACHÓWKA ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 31151.00 }, { "name": "BLACHODACHÓWKA ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 31764.00 }, { "name": "BLACHODACHÓWKA ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 32427.00 }, { "name": "BLACHODACHÓWKA ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 33040.00 }
             ],
             "DACHÓWKA": [
-                { "name": "DACHÓWKA ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 16440.00 },
-                { "name": "DACHÓWKA ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 17190.00 },
-                { "name": "DACHÓWKA ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 17760.00 },
-                { "name": "DACHÓWKA ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 18910.00 },
-                { "name": "DACHÓWKA ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 19750.00 },
-                { "name": "DACHÓWKA ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 20580.00 },
-                { "name": "DACHÓWKA ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 21400.00 },
-                { "name": "DACHÓWKA ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 22210.00 },
-                { "name": "DACHÓWKA ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 23010.00 },
-                { "name": "DACHÓWKA ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 23800.00 },
-                { "name": "DACHÓWKA ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 24580.00 },
-                { "name": "DACHÓWKA ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 25250.00 },
-                { "name": "DACHÓWKA ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 25870.00 },
-                { "name": "DACHÓWKA ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 26450.00 },
-                { "name": "DACHÓWKA ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 27100.00 },
-                { "name": "DACHÓWKA ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 27810.00 },
-                { "name": "DACHÓWKA ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 28550.00 },
-                { "name": "DACHÓWKA ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 29230.00 },
-                { "name": "DACHÓWKA ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 29800.00 },
-                { "name": "DACHÓWKA ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 30420.00 },
-                { "name": "DACHÓWKA ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 31130.00 },
-                { "name": "DACHÓWKA ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 31880.00 },
-                { "name": "DACHÓWKA ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 32520.00 },
-                { "name": "DACHÓWKA ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 33210.00 },
-                { "name": "DACHÓWKA ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 33850.00 }
+                { "name": "DACHÓWKA ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 16440.00 }, { "name": "DACHÓWKA ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 17190.00 }, { "name": "DACHÓWKA ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 17760.00 }, { "name": "DACHÓWKA ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 18910.00 }, { "name": "DACHÓWKA ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 19750.00 }, { "name": "DACHÓWKA ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 20580.00 }, { "name": "DACHÓWKA ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 21400.00 }, { "name": "DACHÓWKA ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 22210.00 }, { "name": "DACHÓWKA ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 23010.00 }, { "name": "DACHÓWKA ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 23800.00 }, { "name": "DACHÓWKA ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 24580.00 }, { "name": "DACHÓWKA ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 25250.00 }, { "name": "DACHÓWKA ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 25870.00 }, { "name": "DACHÓWKA ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 26450.00 }, { "name": "DACHÓWKA ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 27100.00 }, { "name": "DACHÓWKA ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 27810.00 }, { "name": "DACHÓWKA ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 28550.00 }, { "name": "DACHÓWKA ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 29230.00 }, { "name": "DACHÓWKA ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 29800.00 }, { "name": "DACHÓWKA ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 30420.00 }, { "name": "DACHÓWKA ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 31130.00 }, { "name": "DACHÓWKA ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 31880.00 }, { "name": "DACHÓWKA ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 32520.00 }, { "name": "DACHÓWKA ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 33210.00 }, { "name": "DACHÓWKA ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 33850.00 }
             ],
             "EKIERKI": [
-                { "name": "EKIERKI INWAZYJNE ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 16575.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 17347.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 17940.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 19112.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 19975.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 20827.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 21670.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 22502.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 23325.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 24002.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 24796.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 25479.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 26113.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 26706.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 27370.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 28093.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 28847.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 29540.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 30124.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 30757.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 31481.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 32244.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 32898.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 33601.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 34255.00 }
+                { "name": "EKIERKI INWAZYJNE ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 16575.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 17347.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 17940.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 19112.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 19975.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 20827.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 21670.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 22502.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 23325.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 24002.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 24796.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 25479.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 26113.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 26706.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 27370.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 28093.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 28847.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 29540.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 30124.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 30757.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 31481.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 32244.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 32898.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 33601.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 34255.00 }
             ],
             "GRUNT": [
-                { "name": "GRUNT ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 16872.00 },
-                { "name": "GRUNT ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 17694.00 },
-                { "name": "GRUNT ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 18336.00 },
-                { "name": "GRUNT ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 19558.00 },
-                { "name": "GRUNT ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 20470.00 },
-                { "name": "GRUNT ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 21372.00 },
-                { "name": "GRUNT ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 22264.00 },
-                { "name": "GRUNT ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 23146.00 },
-                { "name": "GRUNT ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 24018.00 },
-                { "name": "GRUNT ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 24880.00 },
-                { "name": "GRUNT ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 25732.00 },
-                { "name": "GRUNT ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 26321.00 },
-                { "name": "GRUNT ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 27004.00 },
-                { "name": "GRUNT ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 27305.00 },
-                { "name": "GRUNT ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 28000.00 },
-                { "name": "GRUNT ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 28755.00 },
-                { "name": "GRUNT ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 29540.00 },
-                { "name": "GRUNT ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 30265.00 },
-                { "name": "GRUNT ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 30880.00 },
-                { "name": "GRUNT ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 31545.00 },
-                { "name": "GRUNT ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 32300.00 },
-                { "name": "GRUNT ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 33095.00 },
-                { "name": "GRUNT ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 33780.00 },
-                { "name": "GRUNT ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 34515.00 },
-                { "name": "GRUNT ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 35200.00 }
+                { "name": "GRUNT ZESTAW 2,7 KWP RISEN 450w + DEYE 1F", "price": 16872.00 }, { "name": "GRUNT ZESTAW 3,15 KWP RISEN 450w + DEYE 1F", "price": 17694.00 }, { "name": "GRUNT ZESTAW 3,6 KWP RISEN 450w + DEYE 1F", "price": 18336.00 }, { "name": "GRUNT ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 19558.00 }, { "name": "GRUNT ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 20470.00 }, { "name": "GRUNT ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 21372.00 }, { "name": "GRUNT ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 22264.00 }, { "name": "GRUNT ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 23146.00 }, { "name": "GRUNT ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 24018.00 }, { "name": "GRUNT ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 24880.00 }, { "name": "GRUNT ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 25732.00 }, { "name": "GRUNT ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 26321.00 }, { "name": "GRUNT ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 27004.00 }, { "name": "GRUNT ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 27305.00 }, { "name": "GRUNT ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 28000.00 }, { "name": "GRUNT ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 28755.00 }, { "name": "GRUNT ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 29540.00 }, { "name": "GRUNT ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 30265.00 }, { "name": "GRUNT ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 30880.00 }, { "name": "GRUNT ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 31545.00 }, { "name": "GRUNT ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 32300.00 }, { "name": "GRUNT ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 33095.00 }, { "name": "GRUNT ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 33780.00 }, { "name": "GRUNT ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 34515.00 }, { "name": "GRUNT ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 35200.00 }
             ]
         },
         "zestawy_niskonapieciowe": {
             "TRAPEZ": [
-                { "name": "TRAPEZ ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 31560.00 },
-                { "name": "TRAPEZ ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 32040.00 },
-                { "name": "TRAPEZ ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 33200.00 },
-                { "name": "TRAPEZ ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 33950.00 },
-                { "name": "TRAPEZ ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 34690.00 },
-                { "name": "TRAPEZ ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 35420.00 },
-                { "name": "TRAPEZ ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 36140.00 },
-                { "name": "TRAPEZ ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 36850.00 },
-                { "name": "TRAPEZ ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 37550.00 },
-                { "name": "TRAPEZ ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 38240.00 },
-                { "name": "TRAPEZ ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 38820.00 },
-                { "name": "TRAPEZ ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 39350.00 },
-                { "name": "TRAPEZ ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 39840.00 },
-                { "name": "TRAPEZ ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 40400.00 },
-                { "name": "TRAPEZ ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 41020.00 },
-                { "name": "TRAPEZ ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 41670.00 },
-                { "name": "TRAPEZ ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 42260.00 },
-                { "name": "TRAPEZ ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 42740.00 },
-                { "name": "TRAPEZ ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 43270.00 },
-                { "name": "TRAPEZ ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 43890.00 },
-                { "name": "TRAPEZ ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 44550.00 },
-                { "name": "TRAPEZ ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 45100.00 },
-                { "name": "TRAPEZ ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 45700.00 },
-                { "name": "TRAPEZ ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 46250.00 }
+                { "name": "TRAPEZ ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 31560.00 }, { "name": "TRAPEZ ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 32040.00 }, { "name": "TRAPEZ ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 33200.00 }, { "name": "TRAPEZ ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 33950.00 }, { "name": "TRAPEZ ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 34690.00 }, { "name": "TRAPEZ ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 35420.00 }, { "name": "TRAPEZ ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 36140.00 }, { "name": "TRAPEZ ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 36850.00 }, { "name": "TRAPEZ ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 37550.00 }, { "name": "TRAPEZ ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 38240.00 }, { "name": "TRAPEZ ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 38820.00 }, { "name": "TRAPEZ ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 39350.00 }, { "name": "TRAPEZ ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 39840.00 }, { "name": "TRAPEZ ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 40400.00 }, { "name": "TRAPEZ ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 41020.00 }, { "name": "TRAPEZ ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 41670.00 }, { "name": "TRAPEZ ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 42260.00 }, { "name": "TRAPEZ ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 42740.00 }, { "name": "TRAPEZ ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 43270.00 }, { "name": "TRAPEZ ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 43890.00 }, { "name": "TRAPEZ ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 44550.00 }, { "name": "TRAPEZ ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 45100.00 }, { "name": "TRAPEZ ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 45700.00 }, { "name": "TRAPEZ ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 46250.00 }
             ],
             "BLACHODACHÓWKA": [
-                { "name": "BLACHODACHÓWKA ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 31996.10 },
-                { "name": "BLACHODACHÓWKA ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 32538.40 },
-                { "name": "BLACHODACHÓWKA ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 33760.70 },
-                { "name": "BLACHODACHÓWKA ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 34573.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 35375.30 },
-                { "name": "BLACHODACHÓWKA ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 36167.60 },
-                { "name": "BLACHODACHÓWKA ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 36949.90 },
-                { "name": "BLACHODACHÓWKA ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 37722.20 },
-                { "name": "BLACHODACHÓWKA ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 38484.50 },
-                { "name": "BLACHODACHÓWKA ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 39236.80 },
-                { "name": "BLACHODACHÓWKA ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 39879.10 },
-                { "name": "BLACHODACHÓWKA ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 40471.40 },
-                { "name": "BLACHODACHÓWKA ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 41023.70 },
-                { "name": "BLACHODACHÓWKA ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 41646.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 42328.30 },
-                { "name": "BLACHODACHÓWKA ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 43040.60 },
-                { "name": "BLACHODACHÓWKA ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 43692.90 },
-                { "name": "BLACHODACHÓWKA ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 44235.20 },
-                { "name": "BLACHODACHÓWKA ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 44827.50 },
-                { "name": "BLACHODACHÓWKA ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 45509.80 },
-                { "name": "BLACHODACHÓWKA ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 46232.10 },
-                { "name": "BLACHODACHÓWKA ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 46844.40 },
-                { "name": "BLACHODACHÓWKA ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 47506.70 },
-                { "name": "BLACHODACHÓWKA ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 48119.00 }
+                { "name": "BLACHODACHÓWKA ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 31996.10 }, { "name": "BLACHODACHÓWKA ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 32538.40 }, { "name": "BLACHODACHÓWKA ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 33760.70 }, { "name": "BLACHODACHÓWKA ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 34573.00 }, { "name": "BLACHODACHÓWKA ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 35375.30 }, { "name": "BLACHODACHÓWKA ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 36167.60 }, { "name": "BLACHODACHÓWKA ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 36949.90 }, { "name": "BLACHODACHÓWKA ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 37722.20 }, { "name": "BLACHODACHÓWKA ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 38484.50 }, { "name": "BLACHODACHÓWKA ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 39236.80 }, { "name": "BLACHODACHÓWKA ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 39879.10 }, { "name": "BLACHODACHÓWKA ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 40471.40 }, { "name": "BLACHODACHÓWKA ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 41023.70 }, { "name": "BLACHODACHÓWKA ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 41646.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 42328.30 }, { "name": "BLACHODACHÓWKA ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 43040.60 }, { "name": "BLACHODACHÓWKA ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 43692.90 }, { "name": "BLACHODACHÓWKA ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 44235.20 }, { "name": "BLACHODACHÓWKA ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 44827.50 }, { "name": "BLACHODACHÓWKA ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 45509.80 }, { "name": "BLACHODACHÓWKA ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 46232.10 }, { "name": "BLACHODACHÓWKA ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 46844.40 }, { "name": "BLACHODACHÓWKA ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 47506.70 }, { "name": "BLACHODACHÓWKA ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 48119.00 }
             ],
             "DACHÓWKA": [
-                { "name": "DACHÓWKA ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 32183.00 },
-                { "name": "DACHÓWKA ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 32752.00 },
-                { "name": "DACHÓWKA ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 34001.00 },
-                { "name": "DACHÓWKA ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 34840.00 },
-                { "name": "DACHÓWKA ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 35669.00 },
-                { "name": "DACHÓWKA ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 36488.00 },
-                { "name": "DACHÓWKA ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 37297.00 },
-                { "name": "DACHÓWKA ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 38096.00 },
-                { "name": "DACHÓWKA ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 38885.00 },
-                { "name": "DACHÓWKA ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 39664.00 },
-                { "name": "DACHÓWKA ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 40333.00 },
-                { "name": "DACHÓWKA ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 40952.00 },
-                { "name": "DACHÓWKA ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 41531.00 },
-                { "name": "DACHÓWKA ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 42180.00 },
-                { "name": "DACHÓWKA ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 42889.00 },
-                { "name": "DACHÓWKA ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 43628.00 },
-                { "name": "DACHÓWKA ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 44307.00 },
-                { "name": "DACHÓWKA ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 44876.00 },
-                { "name": "DACHÓWKA ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 45495.00 },
-                { "name": "DACHÓWKA ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 46204.00 },
-                { "name": "DACHÓWKA ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 46953.00 },
-                { "name": "DACHÓWKA ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 47592.00 },
-                { "name": "DACHÓWKA ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 48281.00 },
-                { "name": "DACHÓWKA ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 48920.00 }
+                { "name": "DACHÓWKA ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 32183.00 }, { "name": "DACHÓWKA ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 32752.00 }, { "name": "DACHÓWKA ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 34001.00 }, { "name": "DACHÓWKA ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 34840.00 }, { "name": "DACHÓWKA ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 35669.00 }, { "name": "DACHÓWKA ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 36488.00 }, { "name": "DACHÓWKA ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 37297.00 }, { "name": "DACHÓWKA ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 38096.00 }, { "name": "DACHÓWKA ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 38885.00 }, { "name": "DACHÓWKA ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 39664.00 }, { "name": "DACHÓWKA ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 40333.00 }, { "name": "DACHÓWKA ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 40952.00 }, { "name": "DACHÓWKA ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 41531.00 }, { "name": "DACHÓWKA ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 42180.00 }, { "name": "DACHÓWKA ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 42889.00 }, { "name": "DACHÓWKA ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 43628.00 }, { "name": "DACHÓWKA ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 44307.00 }, { "name": "DACHÓWKA ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 44876.00 }, { "name": "DACHÓWKA ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 45495.00 }, { "name": "DACHÓWKA ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 46204.00 }, { "name": "DACHÓWKA ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 46953.00 }, { "name": "DACHÓWKA ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 47592.00 }, { "name": "DACHÓWKA ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 48281.00 }, { "name": "DACHÓWKA ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 48920.00 }
             ],
             "EKIERKI": [
-                { "name": "EKIERKI INWAZYJNE ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 32338.75 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 32930.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 34201.25 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 35062.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 35913.75 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 36755.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 37586.25 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 38407.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 39085.25 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 39877.60 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 40559.95 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 41192.30 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 41784.65 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 42447.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 43169.35 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 43921.70 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 44614.05 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 45196.40 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 45828.75 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 46551.10 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 47313.45 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 47965.80 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 48668.15 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 49320.50 }
+                { "name": "EKIERKI INWAZYJNE ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 32338.75 }, { "name": "EKIERKI INWAZYJNE ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 32930.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 34201.25 }, { "name": "EKIERKI INWAZYJNE ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 35062.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 35913.75 }, { "name": "EKIERKI INWAZYJNE ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 36755.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 37586.25 }, { "name": "EKIERKI INWAZYJNE ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 38407.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 39085.25 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 39877.60 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 40559.95 }, { "name": "EKIERKI INWAZYJNE ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 41192.30 }, { "name": "EKIERKI INWAZYJNE ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 41784.65 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 42447.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 43169.35 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 43921.70 }, { "name": "EKIERKI INWAZYJNE ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 44614.05 }, { "name": "EKIERKI INWAZYJNE ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 45196.40 }, { "name": "EKIERKI INWAZYJNE ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 45828.75 }, { "name": "EKIERKI INWAZYJNE ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 46551.10 }, { "name": "EKIERKI INWAZYJNE ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 47313.45 }, { "name": "EKIERKI INWAZYJNE ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 47965.80 }, { "name": "EKIERKI INWAZYJNE ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 48668.15 }, { "name": "EKIERKI INWAZYJNE ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 49320.50 }
             ],
             "GRUNT": [
-                { "name": "GRUNT ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 32681.40 },
-                { "name": "GRUNT ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 33321.60 },
-                { "name": "GRUNT ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 34641.80 },
-                { "name": "GRUNT ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 35552.00 },
-                { "name": "GRUNT ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 36452.20 },
-                { "name": "GRUNT ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 37342.40 },
-                { "name": "GRUNT ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 38222.60 },
-                { "name": "GRUNT ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 39092.80 },
-                { "name": "GRUNT ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 39953.00 },
-                { "name": "GRUNT ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 40803.20 },
-                { "name": "GRUNT ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 41392.10 },
-                { "name": "GRUNT ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 42073.40 },
-                { "name": "GRUNT ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 42376.50 },
-                { "name": "GRUNT ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 43070.00 },
-                { "name": "GRUNT ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 43823.50 },
-                { "name": "GRUNT ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 44607.00 },
-                { "name": "GRUNT ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 45330.50 },
-                { "name": "GRUNT ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 45944.00 },
-                { "name": "GRUNT ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 46607.50 },
-                { "name": "GRUNT ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 47361.00 },
-                { "name": "GRUNT ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 48154.50 },
-                { "name": "GRUNT ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 48838.00 },
-                { "name": "GRUNT ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 49571.50 },
-                { "name": "GRUNT ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 50255.00 }
+                { "name": "GRUNT ZESTAW 3,15 KWP RISEN 450w + DEYE 3F", "price": 32681.40 }, { "name": "GRUNT ZESTAW 3,6 KWP RISEN 450w + DEYE 3F", "price": 33321.60 }, { "name": "GRUNT ZESTAW 4,05 KWP RISEN 450w + DEYE 3F", "price": 34641.80 }, { "name": "GRUNT ZESTAW 4,5 KWP RISEN 450w + DEYE 3F", "price": 35552.00 }, { "name": "GRUNT ZESTAW 4,95 KWP RISEN 450w + DEYE 3F", "price": 36452.20 }, { "name": "GRUNT ZESTAW 5,4 KWP RISEN 450w + DEYE 3F", "price": 37342.40 }, { "name": "GRUNT ZESTAW 5,85 KWP RISEN 450w + DEYE 3F", "price": 38222.60 }, { "name": "GRUNT ZESTAW 6,3 KWP RISEN 450w + DEYE 3F", "price": 39092.80 }, { "name": "GRUNT ZESTAW 6,75 KWP RISEN 450w + DEYE 3F", "price": 39953.00 }, { "name": "GRUNT ZESTAW 7,2 KWP RISEN 450w + DEYE 3F", "price": 40803.20 }, { "name": "GRUNT ZESTAW 7,65 KWP RISEN 450w + DEYE 3F", "price": 41392.10 }, { "name": "GRUNT ZESTAW 8,1 KWP RISEN 450w + DEYE 3F", "price": 42073.40 }, { "name": "GRUNT ZESTAW 8,55 KWP RISEN 450w + DEYE 3F", "price": 42376.50 }, { "name": "GRUNT ZESTAW 9,0 KWP RISEN 450w + DEYE 3F", "price": 43070.00 }, { "name": "GRUNT ZESTAW 9,45 KWP RISEN 450w + DEYE 3F", "price": 43823.50 }, { "name": "GRUNT ZESTAW 9,9 KWP RISEN 450w + DEYE 3F", "price": 44607.00 }, { "name": "GRUNT ZESTAW 10,35 KWP RISEN 450w + DEYE 3F", "price": 45330.50 }, { "name": "GRUNT ZESTAW 10,8 KWP RISEN 450w + DEYE 3F", "price": 45944.00 }, { "name": "GRUNT ZESTAW 11,25 KWP RISEN 450w + DEYE 3F", "price": 46607.50 }, { "name": "GRUNT ZESTAW 11,7 KWP RISEN 450w + DEYE 3F", "price": 47361.00 }, { "name": "GRUNT ZESTAW 12,15 KWP RISEN 450w + DEYE 3F", "price": 48154.50 }, { "name": "GRUNT ZESTAW 12,6 KWP RISEN 450w + DEYE 3F", "price": 48838.00 }, { "name": "GRUNT ZESTAW 13,05 KWP RISEN 450w + DEYE 3F", "price": 49571.50 }, { "name": "GRUNT ZESTAW 13,5 KWP RISEN 450w + DEYE 3F", "price": 50255.00 }
             ]
         },
         "zestawy_wysokonapieciowe": {
             "TRAPEZ": [
-                { "name": "TRAPEZ ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 33660.00 },
-                { "name": "TRAPEZ ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 34140.00 },
-                { "name": "TRAPEZ ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 35100.00 },
-                { "name": "TRAPEZ ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 35850.00 },
-                { "name": "TRAPEZ ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 36590.00 },
-                { "name": "TRAPEZ ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 37320.00 },
-                { "name": "TRAPEZ ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 38040.00 },
-                { "name": "TRAPEZ ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 38750.00 },
-                { "name": "TRAPEZ ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 39450.00 },
-                { "name": "TRAPEZ ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 40140.00 },
-                { "name": "TRAPEZ ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 40820.00 },
-                { "name": "TRAPEZ ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 41350.00 },
-                { "name": "TRAPEZ ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 41840.00 },
-                { "name": "TRAPEZ ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 42400.00 },
-                { "name": "TRAPEZ ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 43020.00 },
-                { "name": "TRAPEZ ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 43670.00 },
-                { "name": "TRAPEZ ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 44260.00 },
-                { "name": "TRAPEZ ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 44740.00 },
-                { "name": "TRAPEZ ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 45270.00 },
-                { "name": "TRAPEZ ZESTAW 11,7 KWP RISEN 450w +GOODWE 3F", "price": 45890.00 },
-                { "name": "TRAPEZ ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 46550.00 },
-                { "name": "TRAPEZ ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 47100.00 },
-                { "name": "TRAPEZ ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 47700.00 },
-                { "name": "TRAPEZ ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 48250.00 }
+                { "name": "TRAPEZ ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 33660.00 }, { "name": "TRAPEZ ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 34140.00 }, { "name": "TRAPEZ ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 35100.00 }, { "name": "TRAPEZ ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 35850.00 }, { "name": "TRAPEZ ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 36590.00 }, { "name": "TRAPEZ ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 37320.00 }, { "name": "TRAPEZ ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 38040.00 }, { "name": "TRAPEZ ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 38750.00 }, { "name": "TRAPEZ ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 39450.00 }, { "name": "TRAPEZ ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 40140.00 }, { "name": "TRAPEZ ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 40820.00 }, { "name": "TRAPEZ ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 41350.00 }, { "name": "TRAPEZ ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 41840.00 }, { "name": "TRAPEZ ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 42400.00 }, { "name": "TRAPEZ ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 43020.00 }, { "name": "TRAPEZ ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 43670.00 }, { "name": "TRAPEZ ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 44260.00 }, { "name": "TRAPEZ ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 44740.00 }, { "name": "TRAPEZ ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 45270.00 }, { "name": "TRAPEZ ZESTAW 11,7 KWP RISEN 450w +GOODWE 3F", "price": 45890.00 }, { "name": "TRAPEZ ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 46550.00 }, { "name": "TRAPEZ ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 47100.00 }, { "name": "TRAPEZ ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 47700.00 }, { "name": "TRAPEZ ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 48250.00 }
             ],
             "BLACHODACHÓWKA": [
-                { "name": "BLACHODACHÓWKA ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 34101.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 34644.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 35667.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 36480.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 37283.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 38076.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 38859.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 39632.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 40395.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 41148.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 41891.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 42484.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 43037.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 43660.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 44343.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 45056.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 45709.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 46252.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 46845.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 11,7 KWP RISEN 450w + GOODWE 3F", "price": 47528.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 48251.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 48864.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 49527.00 },
-                { "name": "BLACHODACHÓWKA ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 50140.00 }
+                { "name": "BLACHODACHÓWKA ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 34101.00 }, { "name": "BLACHODACHÓWKA ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 34644.00 }, { "name": "BLACHODACHÓWKA ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 35667.00 }, { "name": "BLACHODACHÓWKA ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 36480.00 }, { "name": "BLACHODACHÓWKA ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 37283.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 38076.00 }, { "name": "BLACHODACHÓWKA ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 38859.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 39632.00 }, { "name": "BLACHODACHÓWKA ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 40395.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 41148.00 }, { "name": "BLACHODACHÓWKA ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 41891.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 42484.00 }, { "name": "BLACHODACHÓWKA ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 43037.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 43660.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 44343.00 }, { "name": "BLACHODACHÓWKA ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 45056.00 }, { "name": "BLACHODACHÓWKA ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 45709.00 }, { "name": "BLACHODACHÓWKA ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 46252.00 }, { "name": "BLACHODACHÓWKA ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 46845.00 }, { "name": "BLACHODACHÓWKA ZESTAW 11,7 KWP RISEN 450w + GOODWE 3F", "price": 47528.00 }, { "name": "BLACHODACHÓWKA ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 48251.00 }, { "name": "BLACHODACHÓWKA ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 48864.00 }, { "name": "BLACHODACHÓWKA ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 49527.00 }, { "name": "BLACHODACHÓWKA ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 50140.00 }
             ],
             "DACHÓWKA": [
-                { "name": "DACHÓWKA ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 34290.00 },
-                { "name": "DACHÓWKA ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 34860.00 },
-                { "name": "DACHÓWKA ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 35910.00 },
-                { "name": "DACHÓWKA ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 36750.00 },
-                { "name": "DACHÓWKA ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 37580.00 },
-                { "name": "DACHÓWKA ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 38400.00 },
-                { "name": "DACHÓWKA ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 39210.00 },
-                { "name": "DACHÓWKA ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 40010.00 },
-                { "name": "DACHÓWKA ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 40800.00 },
-                { "name": "DACHÓWKA ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 41580.00 },
-                { "name": "DACHÓWKA ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 42350.00 },
-                { "name": "DACHÓWKA ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 42970.00 },
-                { "name": "DACHÓWKA ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 43550.00 },
-                { "name": "DACHÓWKA ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 44200.00 },
-                { "name": "DACHÓWKA ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 44910.00 },
-                { "name": "DACHÓWKA ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 45650.00 },
-                { "name": "DACHÓWKA ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 46330.00 },
-                { "name": "DACHÓWKA ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 46900.00 },
-                { "name": "DACHÓWKA ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 47520.00 },
-                { "name": "DACHÓWKA ZESTAW 11,7 KWP RISEN 450w + GOODWE 3F", "price": 48230.00 },
-                { "name": "DACHÓWKA ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 48980.00 },
-                { "name": "DACHÓWKA ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 49620.00 },
-                { "name": "DACHÓWKA ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 50310.00 },
-                { "name": "DACHÓWKA ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 50950.00 }
+                { "name": "DACHÓWKA ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 34290.00 }, { "name": "DACHÓWKA ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 34860.00 }, { "name": "DACHÓWKA ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 35910.00 }, { "name": "DACHÓWKA ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 36750.00 }, { "name": "DACHÓWKA ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 37580.00 }, { "name": "DACHÓWKA ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 38400.00 }, { "name": "DACHÓWKA ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 39210.00 }, { "name": "DACHÓWKA ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 40010.00 }, { "name": "DACHÓWKA ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 40800.00 }, { "name": "DACHÓWKA ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 41580.00 }, { "name": "DACHÓWKA ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 42350.00 }, { "name": "DACHÓWKA ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 42970.00 }, { "name": "DACHÓWKA ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 43550.00 }, { "name": "DACHÓWKA ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 44200.00 }, { "name": "DACHÓWKA ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 44910.00 }, { "name": "DACHÓWKA ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 45650.00 }, { "name": "DACHÓWKA ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 46330.00 }, { "name": "DACHÓWKA ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 46900.00 }, { "name": "DACHÓWKA ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 47520.00 }, { "name": "DACHÓWKA ZESTAW 11,7 KWP RISEN 450w + GOODWE 3F", "price": 48230.00 }, { "name": "DACHÓWKA ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 48980.00 }, { "name": "DACHÓWKA ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 49620.00 }, { "name": "DACHÓWKA ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 50310.00 }, { "name": "DACHÓWKA ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 50950.00 }
             ],
             "EKIERKI": [
-                { "name": "EKIERKI INWAZYJNE ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 34447.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 35040.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 36112.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 36975.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 37827.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 38670.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 39502.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 40325.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 41002.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 41796.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 42579.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 43213.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 43806.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 44470.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 45193.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 45947.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 46640.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 47224.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 47857.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 11,7 KWP RISEN 450w + GOODWE 3F", "price": 48581.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 49344.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 49998.00 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 50701.50 },
-                { "name": "EKIERKI INWAZYJNE ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 51355.00 }
+                { "name": "EKIERKI INWAZYJNE ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 34447.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 35040.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 36112.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 36975.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 37827.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 38670.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 39502.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 40325.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 41002.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 41796.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 42579.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 43213.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 43806.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 44470.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 45193.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 45947.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 46640.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 47224.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 47857.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 11,7 KWP RISEN 450w + GOODWE 3F", "price": 48581.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 49344.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 49998.00 }, { "name": "EKIERKI INWAZYJNE ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 50701.50 }, { "name": "EKIERKI INWAZYJNE ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 51355.00 }
             ],
             "GRUNT": [
-                { "name": "GRUNT ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 34794.00 },
-                { "name": "GRUNT ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 35436.00 },
-                { "name": "GRUNT ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 36558.00 },
-                { "name": "GRUNT ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 37470.00 },
-                { "name": "GRUNT ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 38372.00 },
-                { "name": "GRUNT ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 39264.00 },
-                { "name": "GRUNT ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 40146.00 },
-                { "name": "GRUNT ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 41018.00 },
-                { "name": "GRUNT ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 41880.00 },
-                { "name": "GRUNT ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 42732.00 },
-                { "name": "GRUNT ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 43421.00 },
-                { "name": "GRUNT ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 44104.00 },
-                { "name": "GRUNT ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 44405.00 },
-                { "name": "GRUNT ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 45100.00 },
-                { "name": "GRUNT ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 45855.00 },
-                { "name": "GRUNT ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 46640.00 },
-                { "name": "GRUNT ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 47365.00 },
-                { "name": "GRUNT ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 47980.00 },
-                { "name": "GRUNT ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 48645.00 },
-                { "name": "GRUNT ZESTAW 11,7 KWP RISEN 450w + GOODWE 3F", "price": 49400.00 },
-                { "name": "GRUNT ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 50195.00 },
-                { "name": "GRUNT ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 50880.00 },
-                { "name": "GRUNT ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 51615.00 },
-                { "name": "GRUNT ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 52300.00 }
+                { "name": "GRUNT ZESTAW 3,15 KWP RISEN 450w + GOODWE 3F", "price": 34794.00 }, { "name": "GRUNT ZESTAW 3,6 KWP RISEN 450w + GOODWE 3F", "price": 35436.00 }, { "name": "GRUNT ZESTAW 4,05 KWP RISEN 450w + GOODWE 3F", "price": 36558.00 }, { "name": "GRUNT ZESTAW 4,5 KWP RISEN 450w + GOODWE 3F", "price": 37470.00 }, { "name": "GRUNT ZESTAW 4,95 KWP RISEN 450w + GOODWE 3F", "price": 38372.00 }, { "name": "GRUNT ZESTAW 5,4 KWP RISEN 450w + GOODWE 3F", "price": 39264.00 }, { "name": "GRUNT ZESTAW 5,85 KWP RISEN 450w + GOODWE 3F", "price": 40146.00 }, { "name": "GRUNT ZESTAW 6,3 KWP RISEN 450w + GOODWE 3F", "price": 41018.00 }, { "name": "GRUNT ZESTAW 6,75 KWP RISEN 450w + GOODWE 3F", "price": 41880.00 }, { "name": "GRUNT ZESTAW 7,2 KWP RISEN 450w + GOODWE 3F", "price": 42732.00 }, { "name": "GRUNT ZESTAW 7,65 KWP RISEN 450w + GOODWE 3F", "price": 43421.00 }, { "name": "GRUNT ZESTAW 8,1 KWP RISEN 450w + GOODWE 3F", "price": 44104.00 }, { "name": "GRUNT ZESTAW 8,55 KWP RISEN 450w + GOODWE 3F", "price": 44405.00 }, { "name": "GRUNT ZESTAW 9,0 KWP RISEN 450w + GOODWE 3F", "price": 45100.00 }, { "name": "GRUNT ZESTAW 9,45 KWP RISEN 450w + GOODWE 3F", "price": 45855.00 }, { "name": "GRUNT ZESTAW 9,9 KWP RISEN 450w + GOODWE 3F", "price": 46640.00 }, { "name": "GRUNT ZESTAW 10,35 KWP RISEN 450w + GOODWE 3F", "price": 47365.00 }, { "name": "GRUNT ZESTAW 10,8 KWP RISEN 450w + GOODWE 3F", "price": 47980.00 }, { "name": "GRUNT ZESTAW 11,25 KWP RISEN 450w + GOODWE 3F", "price": 48645.00 }, { "name": "GRUNT ZESTAW 11,7 KWP RISEN 450w + GOODWE 3F", "price": 49400.00 }, { "name": "GRUNT ZESTAW 12,15 KWP RISEN 450w + GOODWE 3F", "price": 50195.00 }, { "name": "GRUNT ZESTAW 12,6 KWP RISEN 450w + GOODWE 3F", "price": 50880.00 }, { "name": "GRUNT ZESTAW 13,05 KWP RISEN 450w + GOODWE 3F", "price": 51615.00 }, { "name": "GRUNT ZESTAW 13,5 KWP RISEN 450w + GOODWE 3F", "price": 52300.00 }
             ]
         }
     };
     
-    // ... reszta identycznego kodu JavaScript jak w poprzedniej odpowiedzi ...
-    // (skrócone dla zwięzłości, ale wklejony blok jest kompletny)
+    function aktualizujPodsumowanieWizualne() {
+        numerZapisanejOferty = null;
+        const getPrice = (el) => (el && el.selectedIndex > 0) ? parseFloat(el.options[el.selectedIndex].dataset.price) : 0;
+        const getText = (el) => (el && el.selectedIndex > 0) ? el.options[el.selectedIndex].text : "";
+        let wybranyZestaw = { text: "", price: 0 };
+        if (aktywnaListaId) {
+            const aktywnaLista = document.getElementById(aktywnaListaId);
+            wybranyZestaw = { text: getText(aktywnaLista), price: getPrice(aktywnaLista) };
+        }
+        
+        const nadprowizjaDyrektora = USTAWIENIA_GLOBALNE['nadprowizja-dyrektora'];
+        const nadprowizjaKierownika = USTAWIENIA_GLOBALNE['nadprowizja-kierownika'];
+        const nadprowizjaFirmy = USTAWIENIA_GLOBALNE['nadprowizja-firmy'];
+        const marzaWidocznosc = USTAWIENIA_GLOBALNE['marza-widocznosc'];
+        
+        const przekopStrona = document.getElementById('przekop-strona').value;
+        const kosztPrzekopu = (przekopStrona === 'firma') ? (parseFloat(document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-przekopu').value) || 0) : 0;
+        const kosztSamKabel = (parseFloat(document.getElementById('sam-kabel').options[document.getElementById('sam-kabel').selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-kabla').value) || 0);
+
+        daneOferty = {
+            zestawPV: wybranyZestaw,
+            magazynNisko: { text: getText(document.getElementById('magazyn-niskonapieciowy')), price: getPrice(document.getElementById('magazyn-niskonapieciowy')) },
+            magazynWysoko: { text: getText(document.getElementById('magazyn-wysokonapieciowy')), price: getPrice(document.getElementById('magazyn-wysokonapieciowy')) },
+            dodatkiMagazyn: { text: getText(document.getElementById('dodatki-magazyn')), price: getPrice(document.getElementById('dodatki-magazyn')) },
+            dodatkiModuly: { text: getText(document.getElementById('dodatki-moduly')), price: getPrice(document.getElementById('dodatki-moduly')) },
+            przekop: { text: document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].text, dlugosc: parseFloat(document.getElementById('dlugosc-przekopu').value) || 0, strona: przekopStrona, cena: kosztPrzekopu },
+            samKabel: { text: getText(document.getElementById('sam-kabel')), dlugosc: parseFloat(document.getElementById('dlugosc-kabla').value) || 0, cena: kosztSamKabel },
+            klimatyzacja: { text: getText(document.getElementById('klimatyzacja')), price: getPrice(document.getElementById('klimatyzacja')) },
+            wymianaFalownikMagazyn: { text: getText(document.getElementById('wymiana-falownik-magazyn')), price: getPrice(document.getElementById('wymiana-falownik-magazyn')) },
+            inneDodatki: { nazwa: document.getElementById('inne-dodatki-nazwa').value, cena: parseFloat(document.getElementById('inne-dodatki-cena').value) || 0 },
+            stawkaVat: parseFloat(document.getElementById('stawka-vat').value),
+            marzaProcent: parseFloat(document.getElementById('marza-procent').value) || 0,
+            klient: { imie: document.getElementById('klient-imie').value, adres: document.getElementById('klient-adres').value, kod: document.getElementById('klient-kod').value, telefon: document.getElementById('klient-telefon').value, email: document.getElementById('klient-email').value },
+            handlowiec: { imie: document.getElementById('ph-imie').value, telefon: document.getElementById('ph-telefon').value, email: document.getElementById('ph-email').value, teren: document.getElementById('ph-teren').value },
+            nadprowizje: { dyrektor: nadprowizjaDyrektora, kierownik: nadprowizjaKierownika, firma: nadprowizjaFirmy },
+            ustawieniaMarzy: { widocznosc: marzaWidocznosc }
+        };
+
+        const kosztPodstawowy = daneOferty.zestawPV.price + daneOferty.magazynNisko.price + daneOferty.magazynWysoko.price + daneOferty.dodatkiMagazyn.price + daneOferty.dodatkiModuly.price + daneOferty.przekop.cena + daneOferty.samKabel.cena + daneOferty.klimatyzacja.price + daneOferty.wymianaFalownikMagazyn.price + daneOferty.inneDodatki.cena;
+        const sumaNadprowizji = daneOferty.nadprowizje.dyrektor + daneOferty.nadprowizje.kierownik + daneOferty.nadprowizje.firma;
+        const kosztBazowy = kosztPodstawowy + sumaNadprowizji;
+        const wartoscMarzyCalkowita = kosztBazowy * (daneOferty.marzaProcent / 100);
+        const marzaDlaPH = wartoscMarzyCalkowita * (daneOferty.ustawieniaMarzy.widocznosc / 100);
+        const marzaDlaFirmy = wartoscMarzyCalkowita - marzaDlaPH;
+        const sumaNettoFinal = kosztBazowy + wartoscMarzyCalkowita;
+        const kwotaVat = sumaNettoFinal * daneOferty.stawkaVat;
+        const cenaKoncowa = sumaNettoFinal + kwotaVat;
+        
+        daneOferty.obliczenia = { kosztBazowy, sumaNettoFinal, kwotaVat, cenaKoncowa, marzaDlaPH: marzaDlaPH, marzaDlaFirmy: marzaDlaFirmy };
+        document.getElementById('koszt-bazowy').textContent = kosztBazowy.toFixed(2);
+        document.getElementById('wartosc-marzy').textContent = marzaDlaPH.toFixed(2);
+        document.getElementById('suma-netto-final').textContent = sumaNettoFinal.toFixed(2);
+        document.getElementById('kwota-vat').textContent = kwotaVat.toFixed(2);
+        document.getElementById('cena-koncowa').textContent = `${cenaKoncowa.toFixed(2)}`;
+        
+        const listaElementow = document.getElementById('lista-wybranych-elementow');
+        listaElementow.innerHTML = '';
+        const dodajDoListy = (etykieta, wartosc) => {
+            if (wartosc && wartosc !== 'Brak' && wartosc !== '-- Wybierz --' && wartosc !== '--' && wartosc !== 0 && wartosc !== '-- Brak --') {
+                const li = document.createElement('li');
+                if (typeof wartosc === 'number') li.textContent = `${etykieta}: ${wartosc.toFixed(2)} zł`;
+                else li.textContent = `${etykieta}: ${wartosc}`;
+                listaElementow.appendChild(li);
+            }
+        };
+        dodajDoListy('Zestaw główny', daneOferty.zestawPV.text);
+        dodajDoListy('Dod. magazyn NN', daneOferty.magazynNisko.text);
+        dodajDoListy('Dod. magazyn WN', daneOferty.magazynWysoko.text);
+        dodajDoListy('Bufor ciepła', daneOferty.dodatkiMagazyn.text);
+        dodajDoListy('Dodatkowe moduły', daneOferty.dodatkiModuly.text);
+        if (daneOferty.przekop.cena > 0 || daneOferty.przekop.dlugosc > 0) dodajDoListy(`Przekop (${daneOferty.przekop.dlugosc}m, strona: ${daneOferty.przekop.strona})`, daneOferty.przekop.text);
+        if (daneOferty.samKabel.cena > 0) dodajDoListy(`Sam kabel (${daneOferty.samKabel.dlugosc}m)`, daneOferty.samKabel.text);
+        dodajDoListy('Klimatyzacja', daneOferty.klimatyzacja.text);
+        dodajDoListy('Wymiana Falownik+Magazyn', daneOferty.wymianaFalownikMagazyn.text);
+        if(daneOferty.inneDodatki.cena > 0) dodajDoListy(daneOferty.inneDodatki.nazwa || 'Inne dodatki', daneOferty.inneDodatki.cena);
+    }
+    
+    function wypelnijListe(selectElement, kategoria, typPokrycia) {
+        const globalnaZmiana = USTAWIENIA_GLOBALNE['globalna-korekta-cen-zestawow'] || 0;
+        const zachowanyValue = selectElement.value;
+        selectElement.innerHTML = '<option value="0" data-price="0">-- Wybierz --</option>';
+        const produkty = BAZA_PRODUKTOW_UI[kategoria]?.[typPokrycia] || [];
+        if (produkty.length > 0) {
+            selectElement.disabled = false;
+            produkty.forEach(produkt => {
+                const nowaCena = produkt.price + globalnaZmiana;
+                const opcja = new Option(produkt.name, produkt.name);
+                opcja.dataset.price = nowaCena < 0 ? 0 : nowaCena;
+                selectElement.add(opcja);
+            });
+        } else {
+            selectElement.disabled = true;
+            selectElement.innerHTML = '<option value="0" data-price="0">-- Brak produktów --</option>';
+        }
+        selectElement.value = zachowanyValue;
+    }
+
+    function odswiezWszystkieListy() {
+        const wybranyTyp = document.getElementById('typ-pokrycia').value;
+        if(wybranyTyp) {
+            wypelnijListe(document.getElementById('zestaw-sieciowy'), 'zestawy_sieciowe', wybranyTyp);
+            wypelnijListe(document.getElementById('zestaw-niskonapieciowy'), 'zestawy_niskonapieciowe', wybranyTyp);
+            wypelnijListe(document.getElementById('zestaw-wysokonapieciowy'), 'zestawy_wysokonapieciowe', wybranyTyp);
+        } else {
+            document.querySelectorAll('.lista-produktow').forEach(lista => {
+                lista.disabled = true;
+                lista.innerHTML = '<option value="0" data-price="0">--</option>';
+            });
+        }
+        aktualizujPodsumowanieWizualne();
+    }
+    
+    function zbierzOpisProduktow(dane) {
+        const produkty = [];
+        if (dane.zestawPV.text) produkty.push(dane.zestawPV.text);
+        if (dane.magazynNisko.text) produkty.push(`Dod. magazyn NN: ${dane.magazynNisko.text}`);
+        if (dane.magazynWysoko.text) produkty.push(`Dod. magazyn WN: ${dane.magazynWysoko.text}`);
+        if (dane.dodatkiMagazyn.text) produkty.push(`Bufor: ${dane.dodatkiMagazyn.text}`);
+        if (dane.dodatkiModuly.text) produkty.push(`Moduły: ${dane.dodatkiModuly.text}`);
+        if (dane.przekop.dlugosc > 0 && dane.przekop.strona !== 'brak') produkty.push(`Przekop (${dane.przekop.dlugosc}m, strona: ${dane.przekop.strona})`);
+        if (dane.samKabel.cena > 0) produkty.push(`Sam kabel (${dane.samKabel.dlugosc}m)`);
+        if (dane.klimatyzacja.text) produkty.push(dane.klimatyzacja.text);
+        if (dane.wymianaFalownikMagazyn.text) produkty.push(dane.wymianaFalownikMagazyn.text);
+        if (dane.inneDodatki.nazwa && dane.inneDodatki.cena > 0) produkty.push(`${dane.inneDodatki.nazwa}`);
+        return produkty.join('; ');
+    }
+
+    function zapiszOferteWArkuzu(dane) {
+        const daneDoZapisu = {
+            action: 'saveOffer', numerOferty: numerZapisanejOferty, dataWygenerowania: new Date().toISOString(),
+            klient: `${dane.klient.imie}, ${dane.klient.adres}, ${dane.klient.kod}`,
+            handlowiec: dane.handlowiec.imie, kwotaNetto: dane.obliczenia.sumaNettoFinal, kwotaBrutto: dane.obliczenia.cenaKoncowa,
+            produkty: zbierzOpisProduktow(dane), marzaHandlowca: dane.obliczenia.marzaDlaPH, marzaDlaFirmy: dane.obliczenia.marzaDlaFirmy,
+            nadprowizjaDyrektora: dane.nadprowizje.dyrektor, nadprowizjaKierownika: dane.nadprowizje.kierownik, nadprowizjaFirmy: dane.nadprowizje.firma
+        };
+        fetch(SCRIPT_URL_DO_DANYCH, { method: 'POST', mode: 'cors', body: JSON.stringify(daneDoZapisu) })
+        .then(response => response.json())
+        .then(data => {
+            if (data.result !== "success") {
+                console.error("Błąd zapisu w Arkuszu:", data.message);
+                alert("Wystąpił błąd podczas zapisu oferty do Arkusza: " + data.message);
+            } else {
+                console.log("Oferta zapisana pomyślnie w Arkuszu Google.");
+            }
+        })
+        .catch(error => {
+            console.error("Krytyczny błąd wysyłania danych:", error);
+            alert(`Wystąpił krytyczny błąd podczas zapisu do Arkusza Google.`);
+        });
+    }
+
+    function generujPDF(typ) {
+        aktualizujPodsumowanieWizualne(); 
+        if (!daneOferty.klient.imie) {
+            alert("Proszę wypełnić dane klienta przed wygenerowaniem oferty.");
+            przejdzDoEtapu(4);
+            document.getElementById('klient-imie').focus();
+            return;
+        }
+        if (numerZapisanejOferty === null) {
+            const dzisiaj = new Date();
+            numerZapisanejOferty = `GN/${dzisiaj.getDate().toString().padStart(2, '0')}${(dzisiaj.getMonth() + 1).toString().padStart(2, '0')}${dzisiaj.getFullYear()}/${String(Date.now()).slice(-4)}`;
+            zapiszOferteWArkuzu(daneOferty);
+        }
+        
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: 'pt' });
+        doc.setFont('LiberationSans-Regular', 'normal');
+        const dzisiaj = new Date();
+        
+        doc.setFontSize(20);
+        doc.text("Oferta Handlowa", doc.internal.pageSize.getWidth() / 2, 30, { align: 'center' });
+        doc.setFontSize(10);
+        doc.text(`Numer oferty: ${numerZapisanejOferty}`, doc.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
+        doc.text(`Data wystawienia: ${dzisiaj.toLocaleDateString('pl-PL')}`, doc.internal.pageSize.getWidth() / 2, 60, { align: 'center' });
+        doc.setLineWidth(0.5);
+        doc.line(30, 75, doc.internal.pageSize.getWidth() - 30, 75);
+        doc.setFontSize(12);
+        doc.text("Dane Nabywcy:", 40, 95);
+        doc.setFontSize(10);
+        doc.text(daneOferty.klient.imie, 40, 110);
+        doc.text(daneOferty.klient.adres, 40, 125);
+        doc.text(daneOferty.klient.kod, 40, 140);
+        doc.text(`E-mail: ${daneOferty.klient.email || 'brak'}`, 40, 155);
+        doc.text(`Tel: ${daneOferty.klient.telefon || 'brak'}`, 40, 170);
+        doc.setFontSize(12);
+        doc.text("Przedstawiciel Handlowy:", 300, 95);
+        doc.setFontSize(10);
+        doc.text(daneOferty.handlowiec.imie, 300, 110);
+        doc.text(`Teren: ${daneOferty.handlowiec.teren || 'brak'}`, 300, 125);
+        doc.text(`E-mail: ${daneOferty.handlowiec.email || 'brak'}`, 300, 140);
+        doc.text(`Tel: ${daneOferty.handlowiec.telefon || 'brak'}`, 300, 155);
+        doc.line(30, 185, doc.internal.pageSize.getWidth() - 30, 185);
+
+        const tabelaBody = [];
+        const przygotujDaneTabeliBiuro = (opis, cena) => {
+            if (!opis || cena === 0) return null;
+            const cenaNetto = cena;
+            const kwotaVat = cenaNetto * daneOferty.stawkaVat;
+            const cenaBrutto = cenaNetto + kwotaVat;
+            return [opis, cenaNetto.toFixed(2) + ' zł', kwotaVat.toFixed(2) + ' zł', cenaBrutto.toFixed(2) + ' zł'];
+        };
+
+        const przygotujWierszDlaKlienta = (opis) => {
+            if (!opis || opis.trim() === "") return null;
+            return [opis, '-', '-', '-'];
+        };
+        
+        const dodajWszystkiePozycjeDoTabeli = (builderFunkcja) => {
+            let wiersz;
+            wiersz = builderFunkcja(daneOferty.zestawPV.text, daneOferty.zestawPV.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = builderFunkcja(daneOferty.magazynNisko.text, daneOferty.magazynNisko.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = builderFunkcja(daneOferty.magazynWysoko.text, daneOferty.magazynWysoko.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = builderFunkcja(daneOferty.dodatkiMagazyn.text, daneOferty.dodatkiMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = builderFunkcja(daneOferty.dodatkiModuly.text, daneOferty.dodatkiModuly.price); if(wiersz) tabelaBody.push(wiersz);
+            
+            if (daneOferty.przekop.dlugosc > 0 && daneOferty.przekop.strona !== 'brak') {
+                const opisPrzekopu = `${daneOferty.przekop.text} (${daneOferty.przekop.dlugosc}m, strona: ${daneOferty.przekop.strona})`;
+                wiersz = builderFunkcja(opisPrzekopu, daneOferty.przekop.cena);
+                if(wiersz) tabelaBody.push(wiersz);
+            }
+            if (daneOferty.samKabel.cena > 0) {
+                 const opisKabla = `${daneOferty.samKabel.text} (${daneOferty.samKabel.dlugosc}m)`;
+                 wiersz = builderFunkcja(opisKabla, daneOferty.samKabel.cena);
+                 if(wiersz) tabelaBody.push(wiersz);
+            }
+
+            wiersz = builderFunkcja(daneOferty.klimatyzacja.text, daneOferty.klimatyzacja.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = builderFunkcja(daneOferty.wymianaFalownikMagazyn.text, daneOferty.wymianaFalownikMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = builderFunkcja(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena); if(wiersz) tabelaBody.push(wiersz);
+        };
+
+        if (typ === 'klient') {
+            dodajWszystkiePozycjeDoTabeli((opis, cena) => przygotujWierszDlaKlienta(opis));
+        } else { // typ === 'biuro'
+            dodajWszystkiePozycjeDoTabeli(przygotujDaneTabeliBiuro);
+        }
+
+        doc.autoTable({
+            startY: 200,
+            head: [['Opis produktu/usługi', 'Wartość Netto', `VAT (${(daneOferty.stawkaVat * 100).toFixed(0)}%)`, 'Wartość Brutto']],
+            body: tabelaBody,
+            theme: 'grid',
+            headStyles: { fillColor: [0, 91, 65], textColor: 255, font: 'LiberationSans-Regular' },
+            styles: { font: 'LiberationSans-Regular', cellPadding: 5 },
+            columnStyles: { 0: { cellWidth: 250 } }
+        });
+
+        const finalY = doc.lastAutoTable.finalY + 15;
+        let summaryBody = [
+            ['Suma Netto:', `${daneOferty.obliczenia.sumaNettoFinal.toFixed(2)} zł`],
+            ['Wartość VAT:', `${daneOferty.obliczenia.kwotaVat.toFixed(2)} zł`],
+            ['Cena końcowa Brutto:', `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} zł`],
+        ];
+
+        if (typ === 'biuro') {
+            summaryBody.unshift(
+                ['Marża Handlowca:', `${daneOferty.obliczenia.marzaDlaPH.toFixed(2)} zł`],
+                ['------------------', '------------------']
+            );
+        }
+
+        doc.setFontSize(12);
+        doc.text("Podsumowanie:", 40, finalY);
+        doc.autoTable({
+            startY: finalY + 10,
+            body: summaryBody,
+            theme: 'plain',
+            margin: { left: 40 },
+            columnStyles: {
+                0: { fontStyle: 'bold', halign: 'left', cellWidth: 150 },
+                1: { halign: 'right', cellWidth: 100 }
+            },
+            styles: { font: 'LiberationSans-Regular' }
+        });
+
+        const pageHeight = doc.internal.pageSize.getHeight();
+        doc.setFontSize(8);
+        doc.text("Dziękujemy za zainteresowanie ofertą Green Now.", doc.internal.pageSize.getWidth() / 2, pageHeight - 30, { align: 'center' });
+        doc.text("Oferta ważna 14 dni. Podane ceny są kwotami brutto i zawierają podatek VAT.", doc.internal.pageSize.getWidth() / 2, pageHeight - 20, { align: 'center' });
+
+        const nazwaPliku = `Oferta_${numerZapisanejOferty.replace(/\//g, '-')}_${typ}.pdf`;
+        doc.save(nazwaPliku);
+    }
+
+    document.getElementById('przycisk-zaloguj').addEventListener('click', () => {
+        const haslo = document.getElementById('haslo-dostepu').value.trim();
+        if (haslo === POPRAWNE_HASLO) {
+            document.getElementById('prosty-login').classList.add('ukryty');
+            document.getElementById('glowny-kalkulator').classList.remove('ukryty');
+        } else {
+            const el = document.getElementById('login-error-prosty');
+            el.textContent = 'Błędne hasło!';
+            setTimeout(() => el.textContent = '', 2000);
+        }
+    });
+    
+    document.querySelectorAll('input, select').forEach(el => {
+        const eventType = el.tagName.toLowerCase() === 'select' ? 'change' : 'input';
+        el.addEventListener(eventType, aktualizujPodsumowanieWizualne);
+    });
+
+    document.getElementById('typ-pokrycia').addEventListener('change', odswiezWszystkieListy);
+    document.getElementById('przekop').addEventListener('change', () => {
+        document.getElementById('dlugosc-przekopu-kontener').classList.toggle('ukryty', document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].dataset.pricePerMeter <= 0);
+        aktualizujPodsumowanieWizualne();
+    });
+    document.getElementById('sam-kabel').addEventListener('change', () => {
+        document.getElementById('dlugosc-kabla-kontener').classList.toggle('ukryty', document.getElementById('sam-kabel').options[document.getElementById('sam-kabel').selectedIndex].dataset.pricePerMeter <= 0);
+        aktualizujPodsumowanieWizualne();
+    });
+
+    document.querySelectorAll('.lista-produktow').forEach(select => {
+        select.addEventListener('change', function() {
+            if (this.value !== '0') {
+                document.querySelectorAll('.lista-produktow').forEach(otherSelect => {
+                    if (otherSelect !== this) { otherSelect.value = '0'; }
+                });
+                aktywnaListaId = this.id;
+            } else {
+                aktywnaListaId = null;
+            }
+            aktualizujPodsumowanieWizualne();
+        });
+    });
+
+    document.getElementById('przycisk-pdf-klient').addEventListener('click', () => generujPDF('klient'));
+    document.getElementById('przycisk-pdf-biuro').addEventListener('click', () => generujPDF('biuro'));
+    
+    odswiezWszystkieListy();
+    aktualizujPodsumowanieWizualne();
 </script>
 </body>
 </html>
