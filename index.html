@@ -540,7 +540,7 @@ function generujPDF(typ) {
 
     // --- LOGOWANIE I INICJALIZACJA ---
     document.getElementById('przycisk-zaloguj').addEventListener('click', () => {
-        const haslo = document.getElementById('haslo-dostepu').value;
+        const haslo = document.getElementById('haslo-dostepu').value.trim();
         if (haslo === POPRAWNE_HASLO) {
             document.getElementById('prosty-login').classList.add('ukryty');
             document.getElementById('glowny-kalkulator').classList.remove('ukryty');
