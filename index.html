@@ -68,8 +68,11 @@
             <div id="etap2" class="etap ukryty"><h2>Krok 2: Produkty i prace dodatkowe</h2><div id="opcje-magazynu-niskonapieciowego"><label for="magazyn-niskonapieciowy">Zwiększenie magazynu do 10kWh lub 15kWh:</label><select id="magazyn-niskonapieciowy"><option value="0" data-price="0">-- Wybierz --</option><option value="10kwh" data-price="3500">Zwiększenie magazynu do 10kWh</option><option value="15kwh" data-price="6500">Zwiększenie magazynu do 15kWh</option></select></div><div id="opcje-magazynu-wysokonapieciowego"><label for="magazyn-wysokonapieciowy">Zwiększenie magazynu do 14,21kWh lub 17,76kWh:</label><select id="magazyn-wysokonapieciowy"><option value="0" data-price="0">-- Wybierz --</option><option value="14kwh" data-price="3100">Zwiększenie magazynu do 14,21kWh</option><option value="17kwh" data-price="6200">Zwiększenie magazynu do 17,76kWh</option></select></div><h3>Inne dodatki</h3><label for="dodatki-magazyn">Magazyn Ciepła:</label><select id="dodatki-magazyn"><option value="0" data-price="0">Brak</option><option value="bufor_100l" data-price="2300">Bufor Ciepła 100l</option></select><label for="dodatki-moduly">Dokładka modułów:</label><select id="dodatki-moduly"><option value="0" data-price="0">Brak</option><option value="2szt" data-price="2500">2 szt.</option><option value="3szt" data-price="3000">3 szt.</option><option value="4szt" data-price="3500">4 szt.</option></select><div class="form-buttons"><button onclick="przejdzDoEtapu(1)" class="wstecz">&larr; Wstecz</button><button onclick="przejdzDoEtapu(3)">Dalej &rarr;</button></div></div>
             <div id="etap3" class="etap ukryty">
                 <h2>Krok 3: Prace ziemne i dodatkowe</h2>
-                <label for="przekop">Przekop z kablem:</label><select id="przekop"><option value="brak" data-price="0">-- Brak --</option><option value="do10" data-price-per-meter="0" data-price="0">Przekop z kablem do 10 m</option><option value="10-30" data-price-per-meter="30">Przekop 10–30 m (30 zł/m)</option><option value="30-60" data-price-per-meter="35">Przekop 30–60 m (35 zł/m)</option><option value="powyzej60" data-price-per-meter="0" data-price="0">Przekop powyżej 60 m (wycena indywidualna)</option></select>
-                <div id="dlugosc-przekopu-kontener" class="ukryty"><label for="dlugosc-przekopu">Długość przekopu (w metrach):</label><input type="number" id="dlugosc-przekopu" min="0" value="0"></div>
+                <label for="przekop-strona">Przekop po stronie:</label>
+<select id="przekop-strona">
+    <option value="firma">FIRMA</option>
+    <option value="klient">KLIENT</option>
+</select><label for="dlugosc-przekopu">Długość przekopu (w metrach):</label><input type="number" id="dlugosc-przekopu" min="0" value="0"></div>
                 
                 <label for="sam-kabel">Kabel do przekopu - sam kabel:</label><select id="sam-kabel"><option value="brak" data-price-per-meter="0">-- Brak --</option><option value="kabel_ziemny" data-price-per-meter="35">Kabel ziemny (35 zł/m)</option></select>
                 <div id="dlugosc-kabla-kontener" class="ukryty"><label for="dlugosc-kabla">Długość samego kabla (w metrach):</label><input type="number" id="dlugosc-kabla" min="0" value="0"></div>
@@ -124,6 +127,9 @@
         const nadprowizjaKierownika = USTAWIENIA_GLOBALNE['nadprowizja-kierownika'];
         const nadprowizjaFirmy = USTAWIENIA_GLOBALNE['nadprowizja-firmy'];
         const marzaWidocznosc = USTAWIENIA_GLOBALNE['marza-widocznosc'];
+        
+        const przekopStrona = document.getElementById('przekop-strona').value;
+        const kosztPrzekopu = (przekopStrona === 'firma') ? (parseFloat(document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-przekopu').value) || 0) : 0;
         const kosztSamKabel = (parseFloat(document.getElementById('sam-kabel').options[document.getElementById('sam-kabel').selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-kabla').value) || 0);
 
         daneOferty = {
@@ -132,8 +138,8 @@
             magazynWysoko: { text: getText(document.getElementById('magazyn-wysokonapieciowy')), price: getPrice(document.getElementById('magazyn-wysokonapieciowy')) },
             dodatkiMagazyn: { text: getText(document.getElementById('dodatki-magazyn')), price: getPrice(document.getElementById('dodatki-magazyn')) },
             dodatkiModuly: { text: getText(document.getElementById('dodatki-moduly')), price: getPrice(document.getElementById('dodatki-moduly')) },
-            przekop: { text: document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].text, value: document.getElementById('przekop').value, cena: (parseFloat(document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-przekopu').value) || 0)},
-            samKabel: { text: getText(document.getElementById('sam-kabel')), cena: kosztSamKabel },
+            przekop: { text: document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].text, dlugosc: parseFloat(document.getElementById('dlugosc-przekopu').value) || 0, strona: przekopStrona, cena: kosztPrzekopu },
+            samKabel: { text: getText(document.getElementById('sam-kabel')), dlugosc: parseFloat(document.getElementById('dlugosc-kabla').value) || 0, cena: kosztSamKabel },
             klimatyzacja: { text: getText(document.getElementById('klimatyzacja')), price: getPrice(document.getElementById('klimatyzacja')) },
             wymianaFalownikMagazyn: { text: getText(document.getElementById('wymiana-falownik-magazyn')), price: getPrice(document.getElementById('wymiana-falownik-magazyn')) },
             inneDodatki: { nazwa: document.getElementById('inne-dodatki-nazwa').value, cena: parseFloat(document.getElementById('inne-dodatki-cena').value) || 0 },
@@ -177,8 +183,8 @@
         dodajDoListy('Dod. magazyn WN', daneOferty.magazynWysoko.text);
         dodajDoListy('Bufor ciepła', daneOferty.dodatkiMagazyn.text);
         dodajDoListy('Dodatkowe moduły', daneOferty.dodatkiModuly.text);
-        if (daneOferty.przekop.cena > 0) dodajDoListy('Przekop z kablem', daneOferty.przekop.text);
-        if (daneOferty.samKabel.cena > 0) dodajDoListy('Sam kabel', daneOferty.samKabel.text);
+        if (daneOferty.przekop.cena > 0) dodajDoListy(`Przekop (${daneOferty.przekop.dlugosc}m)`, daneOferty.przekop.text);
+        if (daneOferty.samKabel.cena > 0) dodajDoListy(`Sam kabel (${daneOferty.samKabel.dlugosc}m)`, daneOferty.samKabel.text);
         dodajDoListy('Klimatyzacja', daneOferty.klimatyzacja.text);
         dodajDoListy('Wymiana Falownik+Magazyn', daneOferty.wymianaFalownikMagazyn.text);
         if(daneOferty.inneDodatki.cena > 0) dodajDoListy(daneOferty.inneDodatki.nazwa || 'Inne dodatki', daneOferty.inneDodatki.cena);
@@ -226,8 +232,8 @@
         if (dane.magazynWysoko.text) produkty.push(`Dod. magazyn WN: ${dane.magazynWysoko.text}`);
         if (dane.dodatkiMagazyn.text) produkty.push(`Bufor: ${dane.dodatkiMagazyn.text}`);
         if (dane.dodatkiModuly.text) produkty.push(`Moduły: ${dane.dodatkiModuly.text}`);
-        if (dane.przekop.cena > 0) produkty.push(dane.przekop.text);
-        if (dane.samKabel.cena > 0) produkty.push(dane.samKabel.text);
+        if (dane.przekop.cena > 0) produkty.push(`${dane.przekop.text} (${dane.przekop.dlugosc}m, strona: ${dane.przekop.strona})`);
+        if (dane.samKabel.cena > 0) produkty.push(`${dane.samKabel.text} (${dane.samKabel.dlugosc}m)`);
         if (dane.klimatyzacja.text) produkty.push(dane.klimatyzacja.text);
         if (dane.wymianaFalownikMagazyn.text) produkty.push(dane.wymianaFalownikMagazyn.text);
         if (dane.inneDodatki.nazwa && dane.inneDodatki.cena > 0) produkty.push(`${dane.inneDodatki.nazwa}`);
@@ -319,8 +325,8 @@
             wiersz = przygotujDaneTabeli(daneOferty.magazynWysoko.text, daneOferty.magazynWysoko.price); if(wiersz) tabelaBody.push(wiersz);
             wiersz = przygotujDaneTabeli(daneOferty.dodatkiMagazyn.text, daneOferty.dodatkiMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
             wiersz = przygotujDaneTabeli(daneOferty.dodatkiModuly.text, daneOferty.dodatkiModuly.price); if(wiersz) tabelaBody.push(wiersz);
-            wiersz = przygotujDaneTabeli(daneOferty.przekop.text, daneOferty.przekop.cena); if(wiersz) tabelaBody.push(wiersz);
-            wiersz = przygotujDaneTabeli(daneOferty.samKabel.text, daneOferty.samKabel.cena); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = przygotujDaneTabeli(`${daneOferty.przekop.text} (${daneOferty.przekop.dlugosc}m)`, daneOferty.przekop.cena); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = przygotujDaneTabeli(`${daneOferty.samKabel.text} (${daneOferty.samKabel.dlugosc}m)`, daneOferty.samKabel.cena); if(wiersz) tabelaBody.push(wiersz);
             wiersz = przygotujDaneTabeli(daneOferty.klimatyzacja.text, daneOferty.klimatyzacja.price); if(wiersz) tabelaBody.push(wiersz);
             wiersz = przygotujDaneTabeli(daneOferty.wymianaFalownikMagazyn.text, daneOferty.wymianaFalownikMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
             wiersz = przygotujDaneTabeli(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena); if(wiersz) tabelaBody.push(wiersz);
@@ -345,9 +351,7 @@
 
         if (typ === 'biuro') {
             summaryBody.unshift(
-                ['Koszt Bazowy:', `${daneOferty.obliczenia.kosztBazowy.toFixed(2)} zł`],
                 ['Marża Handlowca:', `${daneOferty.obliczenia.marzaDlaPH.toFixed(2)} zł`],
-                ['Marża Firmy:', `${daneOferty.obliczenia.marzaDlaFirmy.toFixed(2)} zł`],
                 ['------------------', '------------------']
             );
         }
@@ -395,9 +399,11 @@
     document.getElementById('typ-pokrycia').addEventListener('change', odswiezWszystkieListy);
     document.getElementById('przekop').addEventListener('change', () => {
         document.getElementById('dlugosc-przekopu-kontener').classList.toggle('ukryty', document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].dataset.pricePerMeter <= 0);
+        aktualizujPodsumowanieWizualne();
     });
     document.getElementById('sam-kabel').addEventListener('change', () => {
         document.getElementById('dlugosc-kabla-kontener').classList.toggle('ukryty', document.getElementById('sam-kabel').options[document.getElementById('sam-kabel').selectedIndex].dataset.pricePerMeter <= 0);
+        aktualizujPodsumowanieWizualne();
     });
 
     document.querySelectorAll('.lista-produktow').forEach(select => {
