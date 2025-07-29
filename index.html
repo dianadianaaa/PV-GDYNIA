@@ -113,7 +113,6 @@
         if (el) el.classList.remove('ukryty');
     }
 
-    // NOWA BAZA PRODUKTÓW Z PLIKU
     const BAZA_PRODUKTOW_UI = {
         "zestawy_sieciowe": {
             "TRAPEZ": [
@@ -401,7 +400,7 @@
         };
 
         if (typ === 'klient') {
-            dodajWszystkiePozycjeDoTabeli((opis, cena) => przygotujWierszDlaKlienta(opis));
+            dodajWszystkiePozycjeDoTabeli(przygotujWierszDlaKlienta);
         } else { // typ === 'biuro'
             dodajWszystkiePozycjeDoTabeli(przygotujDaneTabeliBiuro);
         }
