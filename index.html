@@ -2,12 +2,12 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator Green Now</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-customfonts/1.0.4/LiberationSans-Regular-normal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-customfonts/1.0.4/LiberationSans-Regular-normal.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
@@ -60,13 +60,10 @@
             <div id="etap3" class="etap ukryty"><h2>Krok 3: Prace ziemne i dodatkowe</h2><label for="przekop">Przekop z kablem:</label><select id="przekop"><option value="brak" data-price="0">-- Brak --</option><option value="do10" data-price-per-meter="0" data-price="0">Przekop z kablem do 10 m</option><option value="10-30" data-price-per-meter="30">Przekop 10–30 m (30 zł/m)</option><option value="30-60" data-price-per-meter="35">Przekop 30–60 m (35 zł/m)</option><option value="powyzej60" data-price-per-meter="0" data-price="0">Przekop powyżej 60 m (wycena indywidualna)</option></select><div id="dlugosc-przekopu-kontener" class="ukryty"><label for="dlugosc-przekopu">Długość przekopu (w metrach):</label><input type="number" id="dlugosc-przekopu" min="0" value="0"></div><label for="klimatyzacja">Klimatyzacja:</label><select id="klimatyzacja"><option value="0" data-price="0">-- Wybierz --</option><option value="klima_2_6" data-price="3330">Klimatyzacja TCL Ocarina 2,6kW</option><option value="klima_3_4" data-price="3420">Klimatyzacja TCL Ocarina 3,4kW</option><option value="klima_5_1" data-price="4120">Klimatyzacja TCL Ocarina 5,1kW</option><option value="klima_6_8" data-price="4500">Klimatyzacja TCL Ocarina 6,8kW</option></select><label for="wymiana-falownik-magazyn">Wymiana falownik + magazyn:</label><select id="wymiana-falownik-magazyn"><option value="0" data-price="0">-- Wybierz --</option><option value="wymiana_gw10" data-price="23900">Falownik LV (GoodWe 10) + magazyn 10kWh</option><option value="wymiana_deye5" data-price="21700">Falownik LV (Deye 5) + magazyn 5kWh</option><option value="wymiana_deye10" data-price="24200">Falownik LV (Deye 10) + magazyn 10kWh</option></select><label for="inne-dodatki-nazwa">Inne dodatki (nazwa):</label><input type="text" id="inne-dodatki-nazwa" placeholder="Np. Dodatkowe zabezpieczenia"><label for="inne-dodatki-cena">Inne dodatki (kwota w PLN):</label><input type="number" id="inne-dodatki-cena" min="0" value="0"><div class="form-buttons"><button onclick="przejdzDoEtapu(2)" class="wstecz">&larr; Wstecz</button><button onclick="przejdzDoEtapu(4)">Generuj ofertę &rarr;</button></div></div>
             <div id="etap4" class="etap ukryty"><h2>Krok 4: Dane do oferty</h2><div id="formularz-danych"><h3>Dane Klienta</h3><input type="text" id="klient-imie" placeholder="Imię i nazwisko" required><input type="text" id="klient-adres" placeholder="Adres montażu" required><input type="text" id="klient-kod" placeholder="Kod pocztowy i miejscowość" required><input type="tel" id="klient-telefon" placeholder="Telefon" required><input type="email" id="klient-email" placeholder="E-mail" required><h3>Dane Handlowca</h3><input type="text" id="ph-imie" placeholder="Imię i nazwisko handlowca" required><input type="tel" id="ph-telefon" placeholder="Telefon handlowca" required><input type="email" id="ph-email" placeholder="E-mail handlowca" required><input type="text" id="ph-teren" placeholder="Teren działania" required><div class="form-buttons"><button type="button" onclick="przejdzDoEtapu(3)" class="wstecz">&larr; Wstecz</button><button type="button" id="przycisk-pdf-klient">Generuj ofertę dla Klienta</button><button type="button" id="przycisk-pdf-biuro">Generuj podsumowanie dla Biura</button></div></div></div>
         </div>
-        <div id="stale-podsumowanie"><h3>Wybrane elementy:</h3><ul id="lista-wybranych-elementow"></ul><h3>Podsumowanie Ceny:</h3><div id="podsumowanie-tresc"><p>Koszt Bazowy (dla firmy): <span id="koszt-bazowy">0.00</span> PLN</p><p>Marża Handlowca: <span id="wartosc-marzy">0.00</span> PLN</p><p>Wartość Netto (z marżą): <span id="suma-netto-final">0.00</span> PLN</p><p>Podatek VAT: <span id="kwota-vat">0.00</span> PLN</p></div><label for="stawka-vat">Stawka VAT:</label><select id="stawka-vat"><option value="0.08">8%</option><option value="0.23">23%</option></select><label for="marza-procent">Marża (% od Kosztu Bazowego):</label><input type="number" id="marza-procent" min="0" value="0">
-            <label for="globalny-rabat">Globalna korekta ceny zestawu (np. -500 lub 200):</label>
-<input type="number" id="globalny-rabat" value="0"><h3 id="cena-koncowa-naglowek">Cena końcowa dla klienta (Brutto): <span id="cena-koncowa">0.00 PLN</span></h3></div>
+        <div id="stale-podsumowanie"><h3>Wybrane elementy:</h3><ul id="lista-wybranych-elementow"></ul><h3>Podsumowanie Ceny:</h3><div id="podsumowanie-tresc"><p>Koszt Bazowy (dla firmy): <span id="koszt-bazowy">0.00</span> PLN</p><p>Marża Handlowca: <span id="wartosc-marzy">0.00</span> PLN</p><p>Wartość Netto (z marżą): <span id="suma-netto-final">0.00</span> PLN</p><p>Podatek VAT: <span id="kwota-vat">0.00</span> PLN</p></div><label for="stawka-vat">Stawka VAT:</label><select id="stawka-vat"><option value="0.08">8%</option><option value="0.23">23%</option></select><label for="marza-procent">Marża (% od Kosztu Bazowego):</label><input type="number" id="marza-procent" min="0" value="0"><label for="globalny-rabat">Globalna korekta ceny zestawu (np. -500 lub 200):</label><input type="number" id="globalny-rabat" value="0"><h3 id="cena-koncowa-naglowek">Cena końcowa dla klienta (Brutto): <span id="cena-koncowa">0.00 PLN</span></h3></div>
     </div>
 
 <script>
-    <script>
     const USTAWIENIA_GLOBALNE = {
         'nadprowizja-dyrektora': 0,
         'nadprowizja-kierownika': 0,
@@ -100,7 +97,6 @@
             wybranyZestaw = { text: getText(aktywnaLista), price: getPrice(aktywnaLista) };
         }
         
-        // NOWA FUNKCJA: Pobieranie wartości globalnej korekty
         const korektaGlobalna = parseFloat(document.getElementById('globalny-rabat').value) || 0;
         const cenaZestawuPoKorekcie = wybranyZestaw.price > 0 ? wybranyZestaw.price + korektaGlobalna : 0;
         
@@ -121,14 +117,13 @@
             inneDodatki: { nazwa: document.getElementById('inne-dodatki-nazwa').value, cena: parseFloat(document.getElementById('inne-dodatki-cena').value) || 0 },
             stawkaVat: parseFloat(document.getElementById('stawka-vat').value),
             marzaProcent: parseFloat(document.getElementById('marza-procent').value) || 0,
-            korektaGlobalna: korektaGlobalna, // Zapisanie korekty do danych oferty
+            korektaGlobalna: korektaGlobalna,
             klient: { imie: document.getElementById('klient-imie').value, adres: document.getElementById('klient-adres').value, kod: document.getElementById('klient-kod').value, telefon: document.getElementById('klient-telefon').value, email: document.getElementById('klient-email').value },
             handlowiec: { imie: document.getElementById('ph-imie').value, telefon: document.getElementById('ph-telefon').value, email: document.getElementById('ph-email').value, teren: document.getElementById('ph-teren').value },
             nadprowizje: { dyrektor: nadprowizjaDyrektora, kierownik: nadprowizjaKierownika, firma: nadprowizjaFirmy },
             ustawieniaMarzy: { widocznosc: marzaWidocznosc }
         };
 
-        // NOWA FUNKCJA: Użycie ceny zestawu po korekcie w obliczeniach
         const kosztPodstawowy = cenaZestawuPoKorekcie + daneOferty.magazynNisko.price + daneOferty.magazynWysoko.price + daneOferty.dodatkiMagazyn.price + daneOferty.dodatkiModuly.price + (daneOferty.przekop.pricePerMeter * daneOferty.przekop.length) + daneOferty.klimatyzacja.price + daneOferty.wymianaFalownikMagazyn.price + daneOferty.inneDodatki.cena;
         
         const sumaNadprowizji = daneOferty.nadprowizje.dyrektor + daneOferty.nadprowizje.kierownik + daneOferty.nadprowizje.firma;
@@ -159,12 +154,9 @@
             }
         };
         dodajDoListy('Zestaw główny', daneOferty.zestawPV.text);
-        
-        // NOWA FUNKCJA: Wyświetlanie korekty na liście
         if (daneOferty.korektaGlobalna !== 0) {
             dodajDoListy('Korekta ceny zestawu', daneOferty.korektaGlobalna);
         }
-
         dodajDoListy('Dod. magazyn NN', daneOferty.magazynNisko.text);
         dodajDoListy('Dod. magazyn WN', daneOferty.magazynWysoko.text);
         dodajDoListy('Bufor ciepła', daneOferty.dodatkiMagazyn.text);
@@ -246,121 +238,122 @@
         });
     }
 
-function generujPDF(typ) {
-    aktualizujPodsumowanieWizualne(); 
-    if (!daneOferty.klient.imie) {
-        alert("Proszę wypełnić dane klienta przed wygenerowaniem oferty.");
-        przejdzDoEtapu(4);
-        document.getElementById('klient-imie').focus();
-        return;
-    }
-    if (numerZapisanejOferty === null) {
-        const dzisiaj = new Date();
-        numerZapisanejOferty = `GN/${dzisiaj.getDate().toString().padStart(2, '0')}${(dzisiaj.getMonth() + 1).toString().padStart(2, '0')}${dzisiaj.getFullYear()}/${String(Date.now()).slice(-4)}`;
-        zapiszOferteWArkuzu(daneOferty);
-    }
-    
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ unit: 'pt' });
-    const dzisiaj = new Date();
-
-    // POPRAWKA: Użycie nowej, niezawodnej czcionki
-    doc.setFont('LiberationSans-Regular', 'normal');
-
-    doc.setFontSize(20);
-    doc.text("Oferta Handlowa", doc.internal.pageSize.getWidth() / 2, 30, { align: 'center' });
-    doc.setFontSize(10);
-    doc.text(`Numer oferty: ${numerZapisanejOferty}`, doc.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
-    doc.text(`Data wystawienia: ${dzisiaj.toLocaleDateString('pl-PL')}`, doc.internal.pageSize.getWidth() / 2, 60, { align: 'center' });
-
-    doc.setLineWidth(0.5);
-    doc.line(30, 75, doc.internal.pageSize.getWidth() - 30, 75);
-
-    doc.setFontSize(12);
-    doc.text("Dane Nabywcy:", 40, 95);
-    doc.setFontSize(10);
-    doc.text(daneOferty.klient.imie, 40, 110);
-    doc.text(daneOferty.klient.adres, 40, 125);
-    doc.text(daneOferty.klient.kod, 40, 140);
-    doc.text(`E-mail: ${daneOferty.klient.email || 'brak'}`, 40, 155);
-    doc.text(`Tel: ${daneOferty.klient.telefon || 'brak'}`, 40, 170);
-
-    doc.setFontSize(12);
-    doc.text("Przedstawiciel Handlowy:", 300, 95);
-    doc.setFontSize(10);
-    doc.text(daneOferty.handlowiec.imie, 300, 110);
-    doc.text(`Teren: ${daneOferty.handlowiec.teren || 'brak'}`, 300, 125);
-    doc.text(`E-mail: ${daneOferty.handlowiec.email || 'brak'}`, 300, 140);
-    doc.text(`Tel: ${daneOferty.handlowiec.telefon || 'brak'}`, 300, 155);
-
-    doc.line(30, 185, doc.internal.pageSize.getWidth() - 30, 185);
-
-    const tabelaBody = [];
-    const przygotujDaneTabeli = (opis, cena) => {
-        if (opis && cena !== 0) { // Zmieniono warunek, aby uwzględniać ujemne korekty
-            const cenaNetto = cena;
-            const kwotaVat = cenaNetto * daneOferty.stawkaVat;
-            const cenaBrutto = cenaNetto + kwotaVat;
-            return [opis, cenaNetto.toFixed(2) + ' zł', kwotaVat.toFixed(2) + ' zł', cenaBrutto.toFixed(2) + ' zł'];
+    function generujPDF(typ) {
+        aktualizujPodsumowanieWizualne(); 
+        if (!daneOferty.klient.imie) {
+            alert("Proszę wypełnić dane klienta przed wygenerowaniem oferty.");
+            przejdzDoEtapu(4);
+            document.getElementById('klient-imie').focus();
+            return;
         }
-        return null;
-    };
+        if (numerZapisanejOferty === null) {
+            const dzisiaj = new Date();
+            numerZapisanejOferty = `GN/${dzisiaj.getDate().toString().padStart(2, '0')}${(dzisiaj.getMonth() + 1).toString().padStart(2, '0')}${dzisiaj.getFullYear()}/${String(Date.now()).slice(-4)}`;
+            zapiszOferteWArkuzu(daneOferty);
+        }
+        
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: 'pt' });
+        const dzisiaj = new Date();
 
-    if (typ === 'biuro') {
-        const cenaZestawuPoKorekcie = daneOferty.zestawPV.price > 0 ? daneOferty.zestawPV.price + daneOferty.korektaGlobalna : 0;
-        let wiersz = przygotujDaneTabeli(daneOferty.zestawPV.text, cenaZestawuPoKorekcie);
-        if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.magazynNisko.text, daneOferty.magazynNisko.price);
-        if(wiersz) tabelaBody.push(wiersz);
-        // ... reszta pozycji dla 'biuro'
-        wiersz = przygotujDaneTabeli(daneOferty.magazynWysoko.text, daneOferty.magazynWysoko.price); if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.dodatkiMagazyn.text, daneOferty.dodatkiMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.dodatkiModuly.text, daneOferty.dodatkiModuly.price); if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.klimatyzacja.text, daneOferty.klimatyzacja.price); if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.wymianaFalownikMagazyn.text, daneOferty.wymianaFalownikMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
-        wiersz = przygotujDaneTabeli(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena); if(wiersz) tabelaBody.push(wiersz);
-    } else {
-        tabelaBody.push(['Instalacja fotowoltaiczna z montażem', daneOferty.obliczenia.sumaNettoFinal.toFixed(2) + ' zł', daneOferty.obliczenia.kwotaVat.toFixed(2) + ' zł', daneOferty.obliczenia.cenaKoncowa.toFixed(2) + ' zł']);
+        doc.setFont('LiberationSans-Regular', 'normal');
+
+        doc.setFontSize(20);
+        doc.text("Oferta Handlowa", doc.internal.pageSize.getWidth() / 2, 30, { align: 'center' });
+        doc.setFontSize(10);
+        doc.text(`Numer oferty: ${numerZapisanejOferty}`, doc.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
+        doc.text(`Data wystawienia: ${dzisiaj.toLocaleDateString('pl-PL')}`, doc.internal.pageSize.getWidth() / 2, 60, { align: 'center' });
+
+        doc.setLineWidth(0.5);
+        doc.line(30, 75, doc.internal.pageSize.getWidth() - 30, 75);
+
+        doc.setFontSize(12);
+        doc.text("Dane Nabywcy:", 40, 95);
+        doc.setFontSize(10);
+        doc.text(daneOferty.klient.imie, 40, 110);
+        doc.text(daneOferty.klient.adres, 40, 125);
+        doc.text(daneOferty.klient.kod, 40, 140);
+        doc.text(`E-mail: ${daneOferty.klient.email || 'brak'}`, 40, 155);
+        doc.text(`Tel: ${daneOferty.klient.telefon || 'brak'}`, 40, 170);
+
+        doc.setFontSize(12);
+        doc.text("Przedstawiciel Handlowy:", 300, 95);
+        doc.setFontSize(10);
+        doc.text(daneOferty.handlowiec.imie, 300, 110);
+        doc.text(`Teren: ${daneOferty.handlowiec.teren || 'brak'}`, 300, 125);
+        doc.text(`E-mail: ${daneOferty.handlowiec.email || 'brak'}`, 300, 140);
+        doc.text(`Tel: ${daneOferty.handlowiec.telefon || 'brak'}`, 300, 155);
+
+        doc.line(30, 185, doc.internal.pageSize.getWidth() - 30, 185);
+
+        const tabelaBody = [];
+        const przygotujDaneTabeli = (opis, cena) => {
+            if (opis && cena !== 0) {
+                const cenaNetto = cena;
+                const kwotaVat = cenaNetto * daneOferty.stawkaVat;
+                const cenaBrutto = cenaNetto + kwotaVat;
+                return [opis, cenaNetto.toFixed(2) + ' zł', kwotaVat.toFixed(2) + ' zł', cenaBrutto.toFixed(2) + ' zł'];
+            }
+            return null;
+        };
+        
+        if (typ === 'biuro') {
+            if(daneOferty.zestawPV.text) {
+                tabelaBody.push(przygotujDaneTabeli(daneOferty.zestawPV.text, daneOferty.zestawPV.price));
+            }
+            if(daneOferty.korektaGlobalna !== 0) {
+                 tabelaBody.push(przygotujDaneTabeli("Korekta ceny zestawu", daneOferty.korektaGlobalna));
+            }
+            let wiersz;
+            wiersz = przygotujDaneTabeli(daneOferty.magazynNisko.text, daneOferty.magazynNisko.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = przygotujDaneTabeli(daneOferty.magazynWysoko.text, daneOferty.magazynWysoko.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = przygotujDaneTabeli(daneOferty.dodatkiMagazyn.text, daneOferty.dodatkiMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = przygotujDaneTabeli(daneOferty.dodatkiModuly.text, daneOferty.dodatkiModuly.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = przygotujDaneTabeli(daneOferty.klimatyzacja.text, daneOferty.klimatyzacja.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = przygotujDaneTabeli(daneOferty.wymianaFalownikMagazyn.text, daneOferty.wymianaFalownikMagazyn.price); if(wiersz) tabelaBody.push(wiersz);
+            wiersz = przygotujDaneTabeli(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena); if(wiersz) tabelaBody.push(wiersz);
+        } else {
+            tabelaBody.push(['Instalacja fotowoltaiczna z montażem', daneOferty.obliczenia.sumaNettoFinal.toFixed(2) + ' zł', daneOferty.obliczenia.kwotaVat.toFixed(2) + ' zł', daneOferty.obliczenia.cenaKoncowa.toFixed(2) + ' zł']);
+        }
+
+        doc.autoTable({
+            startY: 200,
+            head: [['Opis produktu/usługi', 'Wartość Netto', `VAT (${(daneOferty.stawkaVat * 100).toFixed(0)}%)`, 'Wartość Brutto']],
+            body: tabelaBody,
+            theme: 'grid',
+            headStyles: { fillColor: [0, 91, 65], textColor: 255, font: 'LiberationSans-Regular' },
+            styles: { font: 'LiberationSans-Regular', cellPadding: 5 },
+            columnStyles: { 0: { cellWidth: 250 } }
+        });
+
+        const finalY = doc.lastAutoTable.finalY + 15;
+        doc.setFontSize(12);
+        doc.text("Podsumowanie:", 40, finalY);
+
+        doc.autoTable({
+            startY: finalY + 10,
+            body: [
+                ['Suma Netto:', `${daneOferty.obliczenia.sumaNettoFinal.toFixed(2)} zł`],
+                ['Wartość VAT:', `${daneOferty.obliczenia.kwotaVat.toFixed(2)} zł`],
+                ['Cena końcowa Brutto:', `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} zł`],
+            ],
+            theme: 'plain',
+            margin: { left: 40 },
+            columnStyles: {
+                0: { fontStyle: 'bold', halign: 'left', cellWidth: 150 },
+                1: { halign: 'right', cellWidth: 100 }
+            },
+            styles: { font: 'LiberationSans-Regular' }
+        });
+
+        const pageHeight = doc.internal.pageSize.getHeight();
+        doc.setFontSize(8);
+        doc.text("Dziękujemy za zainteresowanie ofertą Green Now.", doc.internal.pageSize.getWidth() / 2, pageHeight - 30, { align: 'center' });
+        doc.text("Oferta ważna 14 dni. Podane ceny są kwotami brutto i zawierają podatek VAT.", doc.internal.pageSize.getWidth() / 2, pageHeight - 20, { align: 'center' });
+
+        const nazwaPliku = `Oferta_${numerZapisanejOferty.replace(/\//g, '-')}_${typ}.pdf`;
+        doc.save(nazwaPliku);
     }
-
-    doc.autoTable({
-        startY: 200,
-        head: [['Opis produktu/usługi', 'Wartość Netto', `VAT (${(daneOferty.stawkaVat * 100).toFixed(0)}%)`, 'Wartość Brutto']],
-        body: tabelaBody,
-        theme: 'grid',
-        headStyles: { fillColor: [0, 91, 65], textColor: 255, font: 'LiberationSans-Regular' },
-        styles: { font: 'LiberationSans-Regular', cellPadding: 5 },
-        columnStyles: { 0: { cellWidth: 250 } }
-    });
-
-    const finalY = doc.lastAutoTable.finalY + 15;
-    doc.setFontSize(12);
-    doc.text("Podsumowanie:", 40, finalY);
-
-    doc.autoTable({
-        startY: finalY + 10,
-        body: [
-            ['Suma Netto:', `${daneOferty.obliczenia.sumaNettoFinal.toFixed(2)} zł`],
-            ['Wartość VAT:', `${daneOferty.obliczenia.kwotaVat.toFixed(2)} zł`],
-            ['Cena końcowa Brutto:', `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} zł`],
-        ],
-        theme: 'plain',
-        margin: { left: 40 },
-        columnStyles: {
-            0: { fontStyle: 'bold', halign: 'left', cellWidth: 150 },
-            1: { halign: 'right', cellWidth: 100 }
-        },
-        styles: { font: 'LiberationSans-Regular' }
-    });
-
-    const pageHeight = doc.internal.pageSize.getHeight();
-    doc.setFontSize(8);
-    doc.text("Dziękujemy za zainteresowanie ofertą Green Now.", doc.internal.pageSize.getWidth() / 2, pageHeight - 30, { align: 'center' });
-    doc.text("Oferta ważna 14 dni. Podane ceny są kwotami brutto i zawierają podatek VAT.", doc.internal.pageSize.getWidth() / 2, pageHeight - 20, { align: 'center' });
-
-    const nazwaPliku = `Oferta_${numerZapisanejOferty.replace(/\//g, '-')}_${typ}.pdf`;
-    doc.save(nazwaPliku);
-}
 
     document.getElementById('przycisk-zaloguj').addEventListener('click', () => {
         const haslo = document.getElementById('haslo-dostepu').value.trim();
@@ -374,7 +367,6 @@ function generujPDF(typ) {
         }
     });
     
-    // ZMIANA: Podpięcie nowego pola do aktualizacji
     document.querySelectorAll('input, select').forEach(el => {
         const eventType = el.tagName.toLowerCase() === 'select' ? 'change' : 'input';
         el.addEventListener(eventType, aktualizujPodsumowanieWizualne);
@@ -409,3 +401,5 @@ function generujPDF(typ) {
     odswiezWszystkieListy();
     aktualizujPodsumowanieWizualne();
 </script>
+</body>
+</html>
