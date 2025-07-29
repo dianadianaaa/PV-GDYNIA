@@ -157,81 +157,87 @@
     }
 };
 
-    function aktualizujPodsumowanieWizualne() {
-        numerZapisanejOferty = null;
-        const getPrice = (el) => (el && el.selectedIndex > 0) ? parseFloat(el.options[el.selectedIndex].dataset.price) : 0;
-        const getText = (el) => (el && el.selectedIndex > 0) ? el.options[el.selectedIndex].text : "";
-        let wybranyZestaw = { text: "", price: 0 };
-        if (aktywnaListaId) {
-            const aktywnaLista = document.getElementById(aktywnaListaId);
-            wybranyZestaw = { text: getText(aktywnaLista), price: getPrice(aktywnaLista) };
-        }
-        
-        const nadprowizjaDyrektora = USTAWIENIA_GLOBALNE['nadprowizja-dyrektora'];
-        const nadprowizjaKierownika = USTAWIENIA_GLOBALNE['nadprowizja-kierownika'];
-        const nadprowizjaFirmy = USTAWIENIA_GLOBALNE['nadprowizja-firmy'];
-        const marzaWidocznosc = USTAWIENIA_GLOBALNE['marza-widocznosc'];
-        
-        const przekopStrona = document.getElementById('przekop-strona').value;
-        const kosztPrzekopu = (przekopStrona === 'firma') ? (parseFloat(document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-przekopu').value) || 0) : 0;
-        const kosztSamKabel = (parseFloat(document.getElementById('sam-kabel').options[document.getElementById('sam-kabel').selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-kabla').value) || 0);
-
-        daneOferty = {
-            zestawPV: wybranyZestaw,
-            magazynNisko: { text: getText(document.getElementById('magazyn-niskonapieciowy')), price: getPrice(document.getElementById('magazyn-niskonapieciowy')) },
-            magazynWysoko: { text: getText(document.getElementById('magazyn-wysokonapieciowy')), price: getPrice(document.getElementById('magazyn-wysokonapieciowy')) },
-            dodatkiMagazyn: { text: getText(document.getElementById('dodatki-magazyn')), price: getPrice(document.getElementById('dodatki-magazyn')) },
-            dodatkiModuly: { text: getText(document.getElementById('dodatki-moduly')), price: getPrice(document.getElementById('dodatki-moduly')) },
-            przekop: { text: document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].text, dlugosc: parseFloat(document.getElementById('dlugosc-przekopu').value) || 0, strona: przekopStrona, cena: kosztPrzekopu },
-            samKabel: { text: getText(document.getElementById('sam-kabel')), dlugosc: parseFloat(document.getElementById('dlugosc-kabla').value) || 0, cena: kosztSamKabel },
-            klimatyzacja: { text: getText(document.getElementById('klimatyzacja')), price: getPrice(document.getElementById('klimatyzacja')) },
-            wymianaFalownikMagazyn: { text: getText(document.getElementById('wymiana-falownik-magazyn')), price: getPrice(document.getElementById('wymiana-falownik-magazyn')) },
-            inneDodatki: { nazwa: document.getElementById('inne-dodatki-nazwa').value, cena: parseFloat(document.getElementById('inne-dodatki-cena').value) || 0 },
-            stawkaVat: parseFloat(document.getElementById('stawka-vat').value),
-            marzaProcent: parseFloat(document.getElementById('marza-procent').value) || 0,
-            klient: { imie: document.getElementById('klient-imie').value, adres: document.getElementById('klient-adres').value, kod: document.getElementById('klient-kod').value, telefon: document.getElementById('klient-telefon').value, email: document.getElementById('klient-email').value },
-            handlowiec: { imie: document.getElementById('ph-imie').value, telefon: document.getElementById('ph-telefon').value, email: document.getElementById('ph-email').value, teren: document.getElementById('ph-teren').value },
-            nadprowizje: { dyrektor: nadprowizjaDyrektora, kierownik: nadprowizjaKierownika, firma: nadprowizjaFirmy },
-            ustawieniaMarzy: { widocznosc: marzaWidocznosc }
-        };
-
-        const kosztPodstawowy = daneOferty.zestawPV.price + daneOferty.magazynNisko.price + daneOferty.magazynWysoko.price + daneOferty.dodatkiMagazyn.price + daneOferty.dodatkiModuly.price + daneOferty.przekop.cena + daneOferty.samKabel.cena + daneOferty.klimatyzacja.price + daneOferty.wymianaFalownikMagazyn.price + daneOferty.inneDodatki.cena;
-        const sumaNadprowizji = daneOferty.nadprowizje.dyrektor + daneOferty.nadprowizje.kierownika + daneOferty.nadprowizje.firma;
-        const kosztBazowy = kosztPodstawowy + sumaNadprowizji;
-        const wartoscMarzyCalkowita = kosztBazowy * (daneOferty.marzaProcent / 100);
-        const marzaDlaPH = wartoscMarzyCalkowita * (daneOferty.ustawieniaMarzy.widocznosc / 100);
-        const marzaDlaFirmy = wartoscMarzyCalkowita - marzaDlaPH;
-        const sumaNettoFinal = kosztBazowy + wartoscMarzyCalkowita;
-        const kwotaVat = sumaNettoFinal * daneOferty.stawkaVat;
-        const cenaKoncowa = sumaNettoFinal + kwotaVat;
-        
-        daneOferty.obliczenia = { kosztBazowy, sumaNettoFinal, kwotaVat, cenaKoncowa, marzaDlaPH: marzaDlaPH, marzaDlaFirmy: marzaDlaFirmy };
-        document.getElementById('wartosc-marzy').textContent = marzaDlaPH.toFixed(2);
-        document.getElementById('suma-netto-final').textContent = sumaNettoFinal.toFixed(2);
-        document.getElementById('kwota-vat').textContent = kwotaVat.toFixed(2);
-        document.getElementById('cena-koncowa').textContent = `${cenaKoncowa.toFixed(2)}`;
-        
-        const listaElementow = document.getElementById('lista-wybranych-elementow');
-        listaElementow.innerHTML = '';
-        const dodajDoListy = (etykieta, wartosc) => {
-            if (wartosc && wartosc !== 'Brak' && wartosc !== '-- Wybierz --' && wartosc !== '--' && wartosc !== 0 && wartosc !== '-- Brak --') {
-                const li = document.createElement('li');
-                if (typeof wartosc === 'number') li.textContent = `${etykieta}: ${wartosc.toFixed(2)} zł`;
-                else li.textContent = `${etykieta}: ${wartosc}`;
-                listaElementow.appendChild(li);
-            }
-        };
-        dodajDoListy('Zestaw główny', daneOferty.zestawPV.text);
-        dodajDoListy('Dod. magazyn NN', daneOferty.magazynNisko.text);
-        dodajDoListy('Dod. magazyn WN', daneOferty.magazynWysoko.text);
-        dodajDoListy('Bufor ciepła', daneOferty.dodatkiMagazyn.text);
-        dodajDoListy('Dodatkowe moduły', daneOferty.dodatkiModuly.text);
-        if (daneOferty.przekop.cena > 0 || (daneOferty.przekop.dlugosc > 0 && daneOferty.przekop.strona === 'klient')) dodajDoListy(`Przekop (${daneOferty.przekop.dlugosc}m, strona: ${daneOferty.przekop.strona})`, daneOferty.przekop.text);
-        if (daneOferty.samKabel.cena > 0) dodajDoListy(`Sam kabel (${daneOferty.samKabel.dlugosc}m)`, daneOferty.samKabel.text);
-        dodajDoListy('Klimatyzacja', daneOferty.klimatyzacja.text);
-        dodajDoListy('Wymiana Falownik+Magazyn', daneOferty.wymianaFalownikMagazyn.text);
-        if(daneOferty.inneDodatki.cena > 0) dodajDoListy(daneOferty.inneDodatki.nazwa || 'Inne dodatki', daneOferty.inneDodatki.cena);
+  function aktualizujPodsumowanieWizualne() {
+    numerZapisanejOferty = null;
+    const getPrice = (el) => (el && el.selectedIndex > 0) ? parseFloat(el.options[el.selectedIndex].dataset.price) : 0;
+    const getText = (el) => (el && el.selectedIndex > 0) ? el.options[el.selectedIndex].text : "";
+    let wybranyZestaw = { text: "", price: 0 };
+    if (aktywnaListaId) {
+        const aktywnaLista = document.getElementById(aktywnaListaId);
+        wybranyZestaw = { text: getText(aktywnaLista), price: getPrice(aktywnaLista) };
     }
+    
+    const nadprowizjaDyrektora = USTAWIENIA_GLOBALNE['nadprowizja-dyrektora'];
+    const nadprowizjaKierownika = USTAWIENIA_GLOBALNE['nadprowizja-kierownika'];
+    const nadprowizjaFirmy = USTAWIENIA_GLOBALNE['nadprowizja-firmy'];
+    const marzaWidocznosc = USTAWIENIA_GLOBALNE['marza-widocznosc'];
+    
+    const przekopStrona = document.getElementById('przekop-strona').value;
+    const kosztPrzekopu = (parseFloat(document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-przekopu').value) || 0);
+    const kosztSamKabel = (parseFloat(document.getElementById('sam-kabel').options[document.getElementById('sam-kabel').selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-kabla').value) || 0);
+
+    daneOferty = {
+        zestawPV: wybranyZestaw,
+        magazynNisko: { text: getText(document.getElementById('magazyn-niskonapieciowy')), price: getPrice(document.getElementById('magazyn-niskonapieciowy')) },
+        magazynWysoko: { text: getText(document.getElementById('magazyn-wysokonapieciowy')), price: getPrice(document.getElementById('magazyn-wysokonapieciowy')) },
+        dodatkiMagazyn: { text: getText(document.getElementById('dodatki-magazyn')), price: getPrice(document.getElementById('dodatki-magazyn')) },
+        dodatkiModuly: { text: getText(document.getElementById('dodatki-moduly')), price: getPrice(document.getElementById('dodatki-moduly')) },
+        przekop: { text: document.getElementById('przekop').options[document.getElementById('przekop').selectedIndex].text, dlugosc: parseFloat(document.getElementById('dlugosc-przekopu').value) || 0, strona: przekopStrona, cena: kosztPrzekopu },
+        samKabel: { text: getText(document.getElementById('sam-kabel')), dlugosc: parseFloat(document.getElementById('dlugosc-kabla').value) || 0, cena: kosztSamKabel },
+        klimatyzacja: { text: getText(document.getElementById('klimatyzacja')), price: getPrice(document.getElementById('klimatyzacja')) },
+        wymianaFalownikMagazyn: { text: getText(document.getElementById('wymiana-falownik-magazyn')), price: getPrice(document.getElementById('wymiana-falownik-magazyn')) },
+        inneDodatki: { nazwa: document.getElementById('inne-dodatki-nazwa').value, cena: parseFloat(document.getElementById('inne-dodatki-cena').value) || 0 },
+        stawkaVat: parseFloat(document.getElementById('stawka-vat').value),
+        marzaProcent: parseFloat(document.getElementById('marza-procent').value) || 0,
+        klient: { imie: document.getElementById('klient-imie').value, adres: document.getElementById('klient-adres').value, kod: document.getElementById('klient-kod').value, telefon: document.getElementById('klient-telefon').value, email: document.getElementById('klient-email').value },
+        handlowiec: { imie: document.getElementById('ph-imie').value, telefon: document.getElementById('ph-telefon').value, email: document.getElementById('ph-email').value, teren: document.getElementById('ph-teren').value },
+        nadprowizje: { dyrektor: nadprowizjaDyrektora, kierownik: nadprowizjaKierownika, firma: nadprowizjaFirmy },
+        ustawieniaMarzy: { widocznosc: marzaWidocznosc }
+    };
+
+    let kosztPodstawowy = daneOferty.zestawPV.price + daneOferty.magazynNisko.price + daneOferty.magazynWysoko.price + daneOferty.dodatkiMagazyn.price + daneOferty.dodatkiModuly.price + daneOferty.samKabel.cena + daneOferty.klimatyzacja.price + daneOferty.wymianaFalownikMagazyn.price + daneOferty.inneDodatki.cena;
+    if (daneOferty.przekop.strona === 'firma') {
+        kosztPodstawowy += daneOferty.przekop.cena;
+    }
+
+    const sumaNadprowizji = daneOferty.nadprowizje.dyrektor + daneOferty.nadprowizje.kierownik + daneOferty.nadprowizje.firma;
+    const kosztBazowy = kosztPodstawowy + sumaNadprowizji;
+    const wartoscMarzyCalkowita = kosztBazowy * (daneOferty.marzaProcent / 100);
+    const marzaDlaPH = wartoscMarzyCalkowita * (daneOferty.ustawieniaMarzy.widocznosc / 100);
+    const marzaDlaFirmy = wartoscMarzyCalkowita - marzaDlaPH;
+    const sumaNettoFinal = kosztBazowy + wartoscMarzyCalkowita;
+    const kwotaVat = sumaNettoFinal * daneOferty.stawkaVat;
+    const cenaKoncowa = sumaNettoFinal + kwotaVat;
+    
+    daneOferty.obliczenia = { kosztBazowy, sumaNettoFinal, kwotaVat, cenaKoncowa, marzaDlaPH: marzaDlaPH, marzaDlaFirmy: marzaDlaFirmy };
+    
+    // Usunięto aktualizację pola 'koszt-bazowy'
+    document.getElementById('wartosc-marzy').textContent = marzaDlaPH.toFixed(2);
+    document.getElementById('suma-netto-final').textContent = sumaNettoFinal.toFixed(2);
+    document.getElementById('kwota-vat').textContent = kwotaVat.toFixed(2);
+    document.getElementById('cena-koncowa').textContent = `${cenaKoncowa.toFixed(2)}`;
+    
+    const listaElementow = document.getElementById('lista-wybranych-elementow');
+    listaElementow.innerHTML = '';
+    const dodajDoListy = (etykieta, wartosc) => {
+        if (wartosc && wartosc !== 'Brak' && wartosc !== '-- Wybierz --' && wartosc !== '--' && wartosc !== 0 && wartosc !== '-- Brak --') {
+            const li = document.createElement('li');
+            if (typeof wartosc === 'number') li.textContent = `${etykieta}: ${wartosc.toFixed(2)} zł`;
+            else li.textContent = `${etykieta}: ${wartosc}`;
+            listaElementow.appendChild(li);
+        }
+    };
+    dodajDoListy('Zestaw główny', daneOferty.zestawPV.text);
+    dodajDoListy('Dod. magazyn NN', daneOferty.magazynNisko.text);
+    dodajDoListy('Dod. magazyn WN', daneOferty.magazynWysoko.text);
+    dodajDoListy('Bufor ciepła', daneOferty.dodatkiMagazyn.text);
+    dodajDoListy('Dodatkowe moduły', daneOferty.dodatkiModuly.text);
+    if (daneOferty.przekop.cena > 0 || (daneOferty.przekop.dlugosc > 0 && daneOferty.przekop.strona === 'klient')) dodajDoListy(`Przekop (${daneOferty.przekop.dlugosc}m, strona: ${daneOferty.przekop.strona})`, daneOferty.przekop.text);
+    if (daneOferty.samKabel.cena > 0) dodajDoListy(`Sam kabel (${daneOferty.samKabel.dlugosc}m)`, daneOferty.samKabel.text);
+    dodajDoListy('Klimatyzacja', daneOferty.klimatyzacja.text);
+    dodajDoListy('Wymiana Falownik+Magazyn', daneOferty.wymianaFalownikMagazyn.text);
+    if(daneOferty.inneDodatki.cena > 0) dodajDoListy(daneOferty.inneDodatki.nazwa || 'Inne dodatki', daneOferty.inneDodatki.cena);
+}
     
     function wypelnijListe(selectElement, kategoria, typPokrycia) {
         const globalnaZmiana = USTAWIENIA_GLOBALNE['globalna-korekta-cen-zestawow'] || 0;
