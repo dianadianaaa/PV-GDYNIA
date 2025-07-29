@@ -408,6 +408,7 @@
     }
 
 function generujPDF(typ) {
+    // Krok 1: Aktualizacja i zapis danych (ten fragment pozostaje bez zmian)
     aktualizujPodsumowanieWizualne(); 
     if (!daneOferty.klient.imie) {
         alert("Proszę wypełnić dane klienta przed wygenerowaniem oferty.");
@@ -421,16 +422,99 @@ function generujPDF(typ) {
         zapiszOferteWArkuzu(daneOferty);
     }
     
-    const numerOfertyDoPDF = numerZapisanejOferty;
+    // Krok 2: Inicjalizacja dokumentu PDF
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-    
-    // Ustawiamy domyślną czcionkę na Roboto dla całego dokumentu
+    const dzisiaj = new Date();
+
+    // Ustawienie czcionki (musi być załadowana w HTML)
     doc.setFont('Roboto-Regular', 'normal');
+
+    // Krok 3: Dodawanie treści do PDF
+    // --- Nagłówek ---
+    doc.setFontSize(20);
+    doc.text("Oferta Handlowa", 105, 20, { align: 'center' });
+    doc.setFontSize(10);
+    doc.text(`Numer oferty: ${numerZapisanejOferty}`, 105, 28, { align: 'center' });
+    doc.text(`Data wystawienia: ${dzisiaj.toLocaleDateString('pl-PL')}`, 105, 34, { align: 'center' });
+
+    // --- Dane Klienta i Handlowca ---
+    doc.setFontSize(12);
+    doc.text("Dane Nabywcy:", 20, 50);
+    doc.setFontSize(10);
+    doc.text(daneOferty.klient.imie, 20, 58);
+    doc.text(daneOferty.klient.adres, 20, 64);
+    doc.text(daneOferty.klient.kod, 20, 70);
+    doc.text(`E-mail: ${daneOferty.klient.email || 'brak'}`, 20, 76);
+    doc.text(`Tel: ${daneOferty.klient.telefon || 'brak'}`, 20, 82);
+
+    doc.setFontSize(12);
+    doc.text("Przedstawiciel Handlowy:", 110, 50);
+    doc.setFontSize(10);
+    doc.text(daneOferty.handlowiec.imie, 110, 58);
+    doc.text(`Teren: ${daneOferty.handlowiec.teren || 'brak'}`, 110, 64);
+    doc.text(`E-mail: ${daneOferty.handlowiec.email || 'brak'}`, 110, 70);
+    doc.text(`Tel: ${daneOferty.handlowiec.telefon || 'brak'}`, 110, 76);
+
+    // --- Tabela z produktami ---
+    const tabelaBody = [];
+    const dodajDoTabeli = (opis, cena) => {
+        if (opis && cena > 0) {
+            const cenaNetto = cena;
+            const kwotaVat = cenaNetto * daneOferty.stawkaVat;
+            const cenaBrutto = cenaNetto + kwotaVat;
+            tabelaBody.push([opis, cenaNetto.toFixed(2) + ' PLN', kwotaVat.toFixed(2) + ' PLN', cenaBrutto.toFixed(2) + ' PLN']);
+        }
+    };
     
-    // ... reszta kodu do generowania PDF jest poza zakresem zmian ...
-    // ... ten fragment kodu nie był częścią prośby o aktualizację i pozostaje bez zmian ...
-    alert(`Rozpoczynam generowanie PDF (${typ})... Funkcjonalność nie jest w pełni zaimplementowana w tym przykładzie.`);
+    // Logika dla biura - pokazuje szczegóły, dla klienta - tylko pozycje zbiorcze
+    if (typ === 'biuro') {
+         if (daneOferty.zestawPV.price > 0) tabelaBody.push([daneOferty.zestawPV.text, daneOferty.zestawPV.price.toFixed(2) + ' PLN', 'zawarty', 'zawarty']);
+         dodajDoTabeli(daneOferty.magazynNisko.text, daneOferty.magazynNisko.price);
+         dodajDoTabeli(daneOferty.magazynWysoko.text, daneOferty.magazynWysoko.price);
+         dodajDoTabeli(daneOferty.dodatkiMagazyn.text, daneOferty.dodatkiMagazyn.price);
+         dodajDoTabeli(daneOferty.dodatkiModuly.text, daneOferty.dodatkiModuly.price);
+         dodajDoTabeli(daneOferty.klimatyzacja.text, daneOferty.klimatyzacja.price);
+         dodajDoTabeli(daneOferty.wymianaFalownikMagazyn.text, daneOferty.wymianaFalownikMagazyn.price);
+         dodajDoTabeli(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena);
+    } else {
+         // Dla klienta jedna pozycja zbiorcza
+         tabelaBody.push(['Instalacja fotowoltaiczna z montażem', daneOferty.obliczenia.sumaNettoFinal.toFixed(2) + ' PLN', daneOferty.obliczenia.kwotaVat.toFixed(2) + ' PLN', daneOferty.obliczenia.cenaKoncowa.toFixed(2) + ' PLN']);
+    }
+
+    doc.autoTable({
+        startY: 90,
+        head: [['Opis produktu/usługi', 'Wartość Netto', `VAT (${daneOferty.stawkaVat * 100}%)`, 'Wartość Brutto']],
+        body: tabelaBody,
+        theme: 'grid',
+        headStyles: { fillColor: [0, 91, 65] } // Kolor nagłówka (ciemnozielony)
+    });
+
+    // --- Podsumowanie ---
+    const finalY = doc.lastAutoTable.finalY + 10;
+    doc.setFontSize(12);
+    doc.text("Podsumowanie:", 140, finalY);
+    doc.autoTable({
+        startY: finalY + 2,
+        body: [
+            ['Suma Netto:', `${daneOferty.obliczenia.sumaNettoFinal.toFixed(2)} PLN`],
+            ['Wartość VAT:', `${daneOferty.obliczenia.kwotaVat.toFixed(2)} PLN`],
+            ['Cena końcowa Brutto:', `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} PLN`],
+        ],
+        theme: 'plain',
+        tableWidth: 'wrap',
+        margin: { left: 140 },
+        styles: { fontStyle: 'bold' }
+    });
+
+    // --- Stopka ---
+    doc.setFontSize(8);
+    doc.text("Dziękujemy za zainteresowanie ofertą Green Now.", 105, 280, { align: 'center' });
+    doc.text("Oferta ważna 14 dni. Podane ceny są kwotami brutto i zawierają podatek VAT.", 105, 285, { align: 'center' });
+
+    // Krok 4: Zapisanie pliku PDF
+    const nazwaPliku = `Oferta_${numerZapisanejOferty.replace(/\//g, '-')}_${typ}.pdf`;
+    doc.save(nazwaPliku);
 }
 
     // --- LOGOWANIE I INICJALIZACJA ---
