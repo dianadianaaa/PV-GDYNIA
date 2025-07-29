@@ -407,7 +407,7 @@
         });
     }
 
-function function generujPDF(typ) {
+function generujPDF(typ) {
     // Krok 1: Aktualizacja i zapis danych (bez zmian)
     aktualizujPodsumowanieWizualne(); 
     if (!daneOferty.klient.imie) {
@@ -424,10 +424,9 @@ function function generujPDF(typ) {
     
     // Krok 2: Inicjalizacja dokumentu PDF
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ unit: 'pt' }); // ZMIANA: Używamy punktów dla większej precyzji
+    const doc = new jsPDF({ unit: 'pt' });
     const dzisiaj = new Date();
 
-    // ZMIANA: Prawidłowe ustawienie czcionki dla polskich znaków
     doc.setFont('Roboto-Regular', 'normal');
 
     // Krok 3: Dodawanie treści do PDF z lepszym formatowaniem
@@ -440,7 +439,7 @@ function function generujPDF(typ) {
 
     // --- Dane Klienta i Handlowca ---
     doc.setLineWidth(0.5);
-    doc.line(30, 75, doc.internal.pageSize.getWidth() - 30, 75); // linia oddzielająca
+    doc.line(30, 75, doc.internal.pageSize.getWidth() - 30, 75);
 
     doc.setFontSize(12);
     doc.text("Dane Nabywcy:", 40, 95);
@@ -459,12 +458,10 @@ function function generujPDF(typ) {
     doc.text(`E-mail: ${daneOferty.handlowiec.email || 'brak'}`, 300, 140);
     doc.text(`Tel: ${daneOferty.handlowiec.telefon || 'brak'}`, 300, 155);
 
-    doc.line(30, 185, doc.internal.pageSize.getWidth() - 30, 185); // linia oddzielająca
+    doc.line(30, 185, doc.internal.pageSize.getWidth() - 30, 185);
 
     // --- Tabela z produktami ---
     const tabelaBody = [];
-    
-    // ZMIANA: Użycie funkcji pomocniczej dla obu typów ofert
     const przygotujDaneTabeli = (opis, cena) => {
         if (opis && cena > 0) {
             const cenaNetto = cena;
@@ -492,7 +489,7 @@ function function generujPDF(typ) {
         if(wiersz) tabelaBody.push(wiersz);
         wiersz = przygotujDaneTabeli(daneOferty.inneDodatki.nazwa, daneOferty.inneDodatki.cena);
         if(wiersz) tabelaBody.push(wiersz);
-    } else { // Dla klienta
+    } else {
         tabelaBody.push(['Instalacja fotowoltaiczna z montażem', daneOferty.obliczenia.sumaNettoFinal.toFixed(2) + ' zł', daneOferty.obliczenia.kwotaVat.toFixed(2) + ' zł', daneOferty.obliczenia.cenaKoncowa.toFixed(2) + ' zł']);
     }
 
@@ -502,16 +499,18 @@ function function generujPDF(typ) {
         body: tabelaBody,
         theme: 'grid',
         headStyles: { fillColor: [0, 91, 65], textColor: 255 },
-        styles: { font: 'Roboto-Regular', cellPadding: 5 }, // ZMIANA: Lepsze odstępy w komórkach
-        columnStyles: { 0: { cellWidth: 250 } } // ZMIANA: Szersza kolumna opisu
+        styles: { font: 'Roboto-Regular', cellPadding: 5 },
+        columnStyles: { 0: { cellWidth: 250 } }
     });
 
     // --- Podsumowanie ---
     const finalY = doc.lastAutoTable.finalY + 15;
+    
+    // ZMIANA: Przeniesienie nagłówka na lewą stronę
     doc.setFontSize(12);
-    doc.text("Podsumowanie:", 370, finalY);
+    doc.text("Podsumowanie:", 40, finalY);
 
-    // ZMIANA: Tabela podsumowania z poprawionym wyrównaniem
+    // ZMIANA: Tabela podsumowania na lewej stronie z nowym formatowaniem
     doc.autoTable({
         startY: finalY + 10,
         body: [
@@ -520,12 +519,12 @@ function function generujPDF(typ) {
             ['Cena końcowa Brutto:', `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} zł`],
         ],
         theme: 'plain',
-        tableWidth: 'wrap',
-        margin: { left: 370 },
+        margin: { left: 40 }, // wyrównanie do lewego marginesu
         columnStyles: {
-            0: { fontStyle: 'bold', halign: 'right' },
-            1: { halign: 'right' }
-        }
+            0: { fontStyle: 'bold', halign: 'left', cellWidth: 150 }, // etykiety wyrównane do lewej
+            1: { halign: 'right', cellWidth: 100 } // wartości wyrównane do prawej
+        },
+        styles: { font: 'Roboto-Regular' } // wymuszenie poprawnej czcionki
     });
 
     // --- Stopka ---
@@ -537,7 +536,6 @@ function function generujPDF(typ) {
     // Krok 4: Zapisanie pliku PDF
     const nazwaPliku = `Oferta_${numerZapisanejOferty.replace(/\//g, '-')}_${typ}.pdf`;
     doc.save(nazwaPliku);
-}
 }
 
     // --- LOGOWANIE I INICJALIZACJA ---
