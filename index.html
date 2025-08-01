@@ -7,7 +7,6 @@
     <title>Kalkulator Green Now</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-customfonts/1.0.4/LiberationSans-Regular-normal.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
@@ -128,7 +127,7 @@
         if (el) el.classList.remove('ukryty');
     }
 
-    const BAZA_PRODUKTOW_UI = { /* ... Pełna baza produktów ... */ };
+    const BAZA_PRODUKTOW_UI = { /* Pełna baza produktów wklejona poniżej */ };
 
     function aktualizujPodsumowanieWizualne() {
         numerZapisanejOferty = null;
@@ -149,7 +148,6 @@
         const samKabelElement = document.getElementById('sam-kabel');
         const przekopStrona = document.getElementById('przekop-strona').value;
 
-        // POPRAWKA: Cena jest liczona zawsze, niezależnie od wyboru "po stronie"
         const kosztPrzekopu = (parseFloat(przekopElement.options[przekopElement.selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-przekopu').value) || 0);
         const kosztSamKabel = (parseFloat(samKabelElement.options[samKabelElement.selectedIndex].dataset.pricePerMeter) || 0) * (parseFloat(document.getElementById('dlugosc-kabla').value) || 0);
         
@@ -172,9 +170,7 @@
             ustawieniaMarzy: { widocznosc: marzaWidocznosc }
         };
 
-        // POPRAWKA: Cena przekopu jest zawsze dodawana do sumy, jeśli jest większa od zera
         const kosztPodstawowy = daneOferty.zestawPV.price + daneOferty.magazynNisko.price + daneOferty.magazynWysoko.price + daneOferty.dodatkiMagazyn.price + daneOferty.dodatkiModuly.price + daneOferty.przekop.cena + daneOferty.samKabel.cena + daneOferty.klimatyzacja.price + daneOferty.wymianaFalownikMagazyn.price + daneOferty.inneDodatki.cena;
-        
         const sumaNadprowizji = daneOferty.nadprowizje.dyrektor + daneOferty.nadprowizje.kierownik + daneOferty.nadprowizje.firma;
         const kosztBazowy = kosztPodstawowy + sumaNadprowizji;
         const wartoscMarzyCalkowita = kosztBazowy * (daneOferty.marzaProcent / 100);
