@@ -7,7 +7,6 @@
     <title>Kalkulator Green Now</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-customfonts/1.0.4/LiberationSans-Regular-normal.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
@@ -105,7 +104,7 @@
         'nadprowizja-dyrektora': 0,
         'nadprowizja-kierownika': 0,
         'nadprowizja-firmy': 0,
-        'marza-widocznosc': 97,
+        'marza-widocznosc': 98,
         'globalna-korekta-cen-zestawow': 0
     };
     const SCRIPT_URL_DO_DANYCH = "https://script.google.com/macros/s/AKfycbzmgBCoEwT8-hQsaXNMAkr6lD_uMLY7IESp-zJhyDrtRd1TkJeMfMW_B8T9EEPYCQM2tg/exec";
@@ -393,7 +392,7 @@
         let yPozycja = 230;
         doc.setFontSize(10);
         listaProduktow.forEach(item => {
-            const splitText = doc.splitTextToSize(item, 500); // Wrap text
+            const splitText = doc.splitTextToSize(item, 500);
             doc.text(`• ${splitText.join('\n')}`, 50, yPozycja);
             yPozycja += (splitText.length * 12) + 6;
         });
