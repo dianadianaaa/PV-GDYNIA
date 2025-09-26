@@ -334,7 +334,7 @@
     }
 
     // =================================================================================
-    // NOWA, UPROSZCZONA WERSJA generujPDF - USUWA POLSKIE ZNAKI I TABELĘ
+    // NOWA, UPROSZCZONA WERSJA generujPDF
     // =================================================================================
     function generujPDF(typ) {
         aktualizujPodsumowanieWizualne(); 
@@ -352,16 +352,11 @@
         
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-
-        // --- NOWA FUNKCJA DO USUWANIA POLSKICH ZNAKÓW ---
+        
+        // --- FUNKCJA DO USUWANIA POLSKICH ZNAKÓW ---
         function removePolishChars(str) {
             if (typeof str !== 'string') return str;
-            return str.replace(/ą/g, 'a').replace(/ć/g, 'c').replace(/ę/g, 'e')
-                      .replace(/ł/g, 'l').replace(/ń/g, 'n').replace(/ó/g, 'o')
-                      .replace(/ś/g, 's').replace(/ź/g, 'z').replace(/ż/g, 'z')
-                      .replace(/Ą/g, 'A').replace(/Ć/g, 'C').replace(/Ę/g, 'E')
-                      .replace(/Ł/g, 'L').replace(/Ń/g, 'N').replace(/Ó/g, 'O')
-                      .replace(/Ś/g, 'S').replace(/Ź/g, 'Z').replace(/Ż/g, 'Z');
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ł/g, 'l').replace(/Ł/g, 'L');
         }
         
         const dzisiaj = new Date();
@@ -373,7 +368,9 @@
         }
         doc.setFontSize(20);
         doc.setTextColor(...zielonyKolor);
+        doc.setFont('helvetica', 'bold');
         doc.text(removePolishChars("Oferta Handlowa"), doc.internal.pageSize.getWidth() - 40, 40, { align: 'right' });
+        doc.setFont('helvetica', 'normal');
         doc.setFontSize(9);
         doc.setTextColor(100);
         doc.text(removePolishChars(`Numer: ${numerZapisanejOferty}`), doc.internal.pageSize.getWidth() - 40, 55, { align: 'right' });
@@ -383,6 +380,7 @@
         let yPozycja = 105;
         doc.setFontSize(11);
         doc.setTextColor(...zielonyKolor);
+        doc.setFont('helvetica', 'bold');
         doc.text(removePolishChars("NABYWCA"), 40, yPozycja);
         doc.text(removePolishChars("SPRZEDAWCA / PRZEDSTAWICIEL"), doc.internal.pageSize.getWidth() / 2, yPozycja);
         doc.setLineWidth(0.5);
@@ -390,15 +388,19 @@
         
         yPozycja += 18;
         doc.setFontSize(10);
-        doc.setTextColor(50); 
+        doc.setTextColor(50);
         
+        doc.setFont('helvetica', 'bold');
         doc.text(removePolishChars(daneOferty.klient.imie), 40, yPozycja);
+        doc.setFont('helvetica', 'normal');
         doc.text(removePolishChars(daneOferty.klient.adres), 40, yPozycja + 11);
         doc.text(removePolishChars(daneOferty.klient.kod), 40, yPozycja + 22);
         doc.text(removePolishChars(`tel: ${daneOferty.klient.telefon || 'brak'}`), 40, yPozycja + 33);
         doc.text(removePolishChars(`email: ${daneOferty.klient.email || 'brak'}`), 40, yPozycja + 44);
 
+        doc.setFont('helvetica', 'bold');
         doc.text(removePolishChars("GREEN NOW SP. Z O.O."), doc.internal.pageSize.getWidth() / 2, yPozycja);
+        doc.setFont('helvetica', 'normal');
         doc.text(removePolishChars(`Przedstawiciel: ${daneOferty.handlowiec.imie}`), doc.internal.pageSize.getWidth() / 2, yPozycja + 11);
         doc.text(removePolishChars(`Teren: ${daneOferty.handlowiec.teren || 'brak'}`), doc.internal.pageSize.getWidth() / 2, yPozycja + 22);
         doc.text(removePolishChars(`tel: ${daneOferty.handlowiec.telefon || 'brak'}`), doc.internal.pageSize.getWidth() / 2, yPozycja + 33);
@@ -406,10 +408,11 @@
         
         yPozycja += 60;
 
-        // --- ZMIANA: Usunięcie tabeli, zastąpienie zwartą listą ---
+        // --- Lista produktów (bez tabeli) ---
         doc.setFontSize(11);
         doc.setTextColor(...zielonyKolor);
-        doc.text(removePolishChars("ZAKRES PRAC I MATERIAŁÓW"), 40, yPozycja);
+        doc.setFont('helvetica', 'bold');
+        doc.text(removePolishChars("ZAKRES PRAC I MATERIALOW"), 40, yPozycja);
         yPozycja += 15;
 
         let listaProduktow = [];
@@ -438,8 +441,10 @@
              dodajDoListyProduktow(daneOferty.inneDodatki.nazwa || 'Inne dodatki', `Koszt: ${daneOferty.inneDodatki.cena.toFixed(2)} zl`);
         }
 
+        doc.setFont('helvetica', 'normal');
         doc.setFontSize(9);
         doc.setTextColor(50);
+        
         const tekstProduktow = listaProduktow.map(item => removePolishChars(item)).join('\n');
         const podzielonyTekst = doc.splitTextToSize(tekstProduktow, 515);
         doc.text(podzielonyTekst, 40, yPozycja, { lineHeightFactor: 1.15 });
@@ -449,7 +454,9 @@
             finalY += 15;
             doc.setFontSize(11);
             doc.setTextColor(...zielonyKolor);
+            doc.setFont('helvetica', 'bold');
             doc.text(removePolishChars("INFORMACJE DLA BIURA:"), 40, finalY);
+            doc.setFont('helvetica', 'normal');
             doc.setFontSize(9);
             doc.setTextColor(80);
             const infoText = doc.splitTextToSize(removePolishChars(daneOferty.infoDlaBiura), 515);
@@ -457,35 +464,40 @@
             finalY += (infoText.length * 10) + 15;
         }
 
-        // --- Podsumowanie finansowe (jako zwykły tekst) ---
+        // --- ZMIANA: Podsumowanie finansowe jako idealnie wyrównany tekst ---
         finalY += 20;
-        doc.setFontSize(10);
         
-        let podsumowanie = [];
+        let summaryData = [];
         if (typ === 'biuro') {
-            podsumowanie.push([removePolishChars('Marza Handlowca (widoczna):'), `${daneOferty.obliczenia.marzaDlaPH.toFixed(2)} zl`]);
+            summaryData.push([removePolishChars('Marza Handlowca (widoczna):'), `${daneOferty.obliczenia.marzaDlaPH.toFixed(2)} zl`]);
         }
-        podsumowanie.push([removePolishChars('Wartosc Netto:'), `${daneOferty.obliczenia.sumaNettoFinal.toFixed(2)} zl`]);
-        podsumowanie.push([removePolishChars(`Podatek VAT (${(daneOferty.stawkaVat * 100).toFixed(0)}%):`), `${daneOferty.obliczenia.kwotaVat.toFixed(2)} zl`]);
-        podsumowanie.push([removePolishChars('CENA KONCOWA BRUTTO:'), `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} zl`]);
+        summaryData.push([removePolishChars('Wartosc Netto:'), `${daneOferty.obliczenia.sumaNettoFinal.toFixed(2)} zl`]);
+        summaryData.push([removePolishChars(`Podatek VAT (${(daneOferty.stawkaVat * 100).toFixed(0)}%):`), `${daneOferty.obliczenia.kwotaVat.toFixed(2)} zl`]);
+        summaryData.push([removePolishChars('CENA KONCOWA BRUTTO:'), `${daneOferty.obliczenia.cenaKoncowa.toFixed(2)} zl`]);
         
-        const startXLabels = doc.internal.pageSize.getWidth() - 200;
-        const startXValues = doc.internal.pageSize.getWidth() - 40;
-
-        podsumowanie.forEach((line, index) => {
-            let y = finalY + (index * 15);
-            if (index === podsumowanie.length - 1) { // Ostatnia linia (Brutto)
-                doc.setFontSize(11);
+        doc.autoTable({
+            startY: finalY,
+            body: summaryData,
+            theme: 'plain',
+            tableWidth: 280,
+            margin: { left: doc.internal.pageSize.getWidth() - 320 },
+            styles: { font: 'helvetica', fontSize: 10, cellPadding: {top: 1, bottom: 1} },
+            columnStyles: { 
+                0: { halign: 'right', fontStyle: 'normal' }, 
+                1: { halign: 'right', fontStyle: 'bold' } 
+            },
+            didDrawCell: (data) => {
+                if (data.row.index === data.table.body.length - 1) {
+                    data.cell.styles.fontSize = 12;
+                }
             }
-            doc.text(line[0], startXLabels, y, {align: 'left'});
-            doc.text(line[1], startXValues, y, {align: 'right'});
         });
         
         const nazwaPliku = `Oferta_${numerZapisanejOferty.replace(/\//g, '-')}_${typ}.pdf`;
         doc.save(nazwaPliku);
 
         if (typ === 'klient') {
-            alert("Pamiętaj: Wygenerowany numer oferty wpisz w umowie z klientem. PDF oferty załącz razem ze skanami umowy do biura.");
+            alert(removePolishChars("Pamiętaj: Wygenerowany numer oferty wpisz w umowie z klientem. PDF oferty załącz razem ze skanami umowy do biura."));
         }
     }
 
