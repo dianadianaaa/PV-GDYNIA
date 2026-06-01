@@ -2025,26 +2025,39 @@ function aktualizujPodsumowanieWizualne() {
 
     function zapiszOferteWArkuzu(dane) {
         const daneDoZapisu = {
-            action: 'saveOffer', numerOferty: numerZapisanejOferty, dataWygenerowania: new Date().toISOString(),
+            action: 'saveOffer',
+            numerOferty: numerZapisanejOferty,
+            dataWygenerowania: new Date().toISOString(),
             klient: `${dane.klient.imie}, ${dane.klient.adres}, ${dane.klient.kod}`,
-            handlowiec: dane.handlowiec.imie, kwotaNetto: dane.obliczenia.sumaNettoFinal, kwotaBrutto: dane.obliczenia.cenaKoncowa,
-            produkty: zbierzOpisProduktow(dane), marzaHandlowca: dane.obliczenia.marzaDlaPH, marzaDlaFirmy: dane.obliczenia.marzaDlaFirmy,
-            nadprowizjaDyrektora: dane.nadprowizje.dyrektor, nadprowizjaKierownika: dane.nadprowizje.kierownik, nadprowizjaFirmy: dane.nadprowizje.firma,
+            handlowiec: dane.handlowiec.imie,
+            kwotaNetto: dane.obliczenia.sumaNettoFinal,
+            kwotaBrutto: dane.obliczenia.cenaKoncowa,
+            produkty: zbierzOpisProduktow(dane),
+            marzaHandlowca: dane.obliczenia.marzaDlaPH,
+            marzaDlaFirmy: dane.obliczenia.marzaDlaFirmy,
+            nadprowizjaDyrektora: dane.nadprowizje.dyrektor,
+            nadprowizjaKierownika: dane.nadprowizje.kierownik,
+            nadprowizjaFirmy: dane.nadprowizje.firma,
             infoDlaBiura: dane.infoDlaBiura
         };
-        fetch(SCRIPT_URL_DO_DANYCH, { method: 'POST', mode: 'cors', body: JSON.stringify(daneDoZapisu) })
-        .then(response => response.json())
-        .then(data => {
-            if (data.result !== "success") {
-                console.error("Błąd zapisu w Arkuszu:", data.message);
-                alert("Wystąpił błąd podczas zapisu oferty do Arkusza: " + data.message);
-            } else {
-                console.log("Oferta zapisana pomyślnie w Arkuszu Google.");
-            }
+
+        const payload = JSON.stringify(daneDoZapisu);
+
+        // WAŻNE: tryb no-cors jest celowy dla Google Apps Script.
+        // Dzięki temu zapis do Arkusza działa także wtedy, gdy podgląd HTML blokuje odczyt odpowiedzi CORS.
+        return fetch(SCRIPT_URL_DO_DANYCH, {
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            keepalive: true,
+            body: payload
+        })
+        .then(() => {
+            console.log('Oferta wysłana do Arkusza Google.');
         })
         .catch(error => {
-            console.error("Krytyczny błąd wysyłania danych:", error);
-            alert(`Wystąpił krytyczny błąd podczas zapisu do Arkusza Google.`);
+            console.error('Błąd wysyłania danych do Arkusza:', error);
+            alert('Nie udało się wysłać oferty do Arkusza Google. Sprawdź internet albo link Apps Script.');
         });
     }
     
